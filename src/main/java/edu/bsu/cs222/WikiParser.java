@@ -6,10 +6,10 @@ import net.minidev.json.JSONArray;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ScryfallParser {
+public class WikiParser {
     public String parse(InputStream testDataStream) throws IOException {
-        JSONArray cardData = JsonPath.read(testDataStream, "$.name");
+        JSONArray wikiUserTest = JsonPath.read(testDataStream, "$..user");
 
-        return cardData.toString();
+        return wikiUserTest.get(0).toString();
     }
 }

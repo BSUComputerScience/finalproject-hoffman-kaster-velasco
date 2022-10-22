@@ -15,10 +15,6 @@ public class ParserTest {
         String parseDataStream = scryfallParser.parse(testDataStream);
         Assertions.assertEquals("""
                 Kamiz, Obscura Oculus
-                2
-                4
                 """, parseDataStream);
     }
-
-
 }
