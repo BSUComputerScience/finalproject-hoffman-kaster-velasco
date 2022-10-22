@@ -1,0 +1,39 @@
+{
+  "continue": {
+    "rvcontinue": "20220904004739|1108369713",
+    "continue": "||"
+  },
+  "query": {
+    "redirects": [
+      {
+        "from": "Zappa",
+        "to": "Frank Zappa"
+      }
+    ],
+    "pages": {
+      "10672": {
+        "pageid": 10672,
+        "ns": 0,
+        "title": "Frank Zappa",
+        "revisions": [
+          {
+            "user": "Vorlee",
+            "timestamp": "2022-09-04T09:40:17Z"
+          },
+          {
+            "user": "Vorlee",
+            "timestamp":"2022-09-04T09:24:39Z"
+          },
+          {
+            "user": "Vorlee",
+            "timestamp": "2022-09-04T09:22:28Z"
+          },
+          {
+            "user": "Isabelle Belato",
+            "timestamp": "2022-09-04T00:47:57Z"
+          }
+        ]
+      }
+    }
+  }
+}
