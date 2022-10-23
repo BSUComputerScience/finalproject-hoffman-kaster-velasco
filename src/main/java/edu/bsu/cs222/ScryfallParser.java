@@ -8,8 +8,8 @@ import java.io.InputStream;
 
 public class ScryfallParser {
     public String parse(InputStream testDataStream) throws IOException {
-        JSONArray cardData = JsonPath.read(testDataStream, "$.name");
+        JSONArray cardData = JsonPath.read(testDataStream, "$..name");
 
-        return cardData.toString();
+        return cardData.get(0).toString();
     }
 }

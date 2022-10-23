@@ -24,7 +24,7 @@
     "border_crop": "https://cards.scryfall.io/border_crop/front/7/4/74b8ae28-e169-46be-8180-ebdaf80efd81.jpg?1650273145"
   },
   "mana_cost": "{1}{W}{U}{B}",
-  "cmc": 4,
+  "cmc": 4.0,
   "type_line": "Legendary Creature — Cephalid Rogue",
   "oracle_text": "Whenever you attack, target attacking creature can't be blocked this turn. It connives. Then choose another attacking creature with lesser power. That creature gains double strike until end of turn. (To have a creature connive, draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on that creature.)",
   "power": "2",
@@ -106,7 +106,7 @@
   "textless": false,
   "booster": false,
   "story_spotlight": false,
-  "edhrec_rank": 5930,
+  "edhrec_rank": 5921,
   "preview": {
     "source": "Wizards of the Coast",
     "source_uri": "https://magic.wizards.com/en/articles/archive/card-image-gallery/streets-of-new-capenna-commander",
@@ -114,9 +114,9 @@
   },
   "prices": {
     "usd": "0.36",
-    "usd_foil": "0.29",
+    "usd_foil": "0.28",
     "usd_etched": null,
-    "eur": "0.58",
+    "eur": "0.38",
     "eur_foil": "0.18",
     "tix": null
   },

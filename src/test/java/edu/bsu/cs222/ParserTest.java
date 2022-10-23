@@ -13,8 +13,6 @@ public class ParserTest {
         ScryfallParser scryfallParser = new ScryfallParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("scryfallParserTestReturn.json");
         String parseDataStream = scryfallParser.parse(testDataStream);
-        Assertions.assertEquals("""
-                Kamiz, Obscura Oculus
-                """, parseDataStream);
+        Assertions.assertEquals("Kamiz, Obscura Oculus", parseDataStream);
     }
 }
