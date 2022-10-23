@@ -1,4 +1,4 @@
-# finalproject-hoffman-kaster-velasco
+# Magic: The Gethering Card Database
 ***
 Ethan Hoffman
 
