@@ -1,4 +1,5 @@
-{
+[
+  {
   "object": "card",
   "id": "74b8ae28-e169-46be-8180-ebdaf80efd81",
   "oracle_id": "49da6a78-f3b2-4691-975c-efbb644311f3",
@@ -132,3 +133,4 @@
     "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Kamiz%2C+Obscura+Oculus&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
   }
 }
+]
