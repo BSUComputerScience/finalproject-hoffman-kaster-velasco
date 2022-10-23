@@ -1,4 +1,4 @@
-# Magic: The Gethering Card Database
+# Magic: The Gathering Card Database
 ***
 Ethan Hoffman
 
