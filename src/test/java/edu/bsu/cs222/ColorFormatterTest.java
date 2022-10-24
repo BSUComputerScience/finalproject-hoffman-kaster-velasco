@@ -8,7 +8,7 @@ public class ColorFormatterTest {
     @Test
     public void ColorFormatterTest(){
         ColorFormatter colorFormatterTest = new ColorFormatter();
-        String colorsTest = new String ("{W}{U}{B}{R}{G}");
+        String colorsTest = "{W}{U}{B}{R}{G}";
         String colorFormatterResult = colorFormatterTest.format(colorsTest);
         Assertions.assertEquals("White, Blue, Black, Red, Green", colorFormatterResult);
 
