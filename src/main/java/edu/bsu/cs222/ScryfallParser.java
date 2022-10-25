@@ -22,22 +22,22 @@ public class ScryfallParser {
         JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
 
         //Convert JSONArrays to Strings
-        String cardName = cardNameArray.get(0).toString();
-        String cardManaCost = cardManaCostArray.get(0).toString();
-        String cardType = cardTypeArray.get(0).toString();
-        String cardRarity = cardRarityArray.get(0).toString();
-        String cardAbilities = cardAbilitiesArray.get(0).toString();
-        String cardPower = cardPowerArray.get(0).toString();
-        String cardToughness = cardToughnessArray.get(0).toString();
-        String cardColors = cardColorsArray.get(0).toString();
-        String cardFlavorText = "";
+        String name = cardNameArray.get(0).toString();
+        String manaCost = cardManaCostArray.get(0).toString();
+        String type = cardTypeArray.get(0).toString();
+        String rarity = cardRarityArray.get(0).toString();
+        String abilities = cardAbilitiesArray.get(0).toString();
+        String power = cardPowerArray.get(0).toString();
+        String toughness = cardToughnessArray.get(0).toString();
+        String colors = cardColorsArray.get(0).toString();
+        String flavorText = "";
 
         //Only convert FlavorText to String if there is something in the cardFlavorTextArray
         if (cardFlavorTextArray.isEmpty()) {
         } else {
-            cardFlavorText = cardFlavorTextArray.get(0).toString();
+            flavorText = cardFlavorTextArray.get(0).toString();
         }
 
-        return cardName;
+        return name;
     }
 }
