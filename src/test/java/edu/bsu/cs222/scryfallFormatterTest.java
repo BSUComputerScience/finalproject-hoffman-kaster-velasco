@@ -17,7 +17,6 @@ public class scryfallFormatterTest {
         cardList[0] = card;
         String formattedTestDataStream = scryfallFormatter.formatJson(cardList);
         Assertions.assertEquals("""
-                Shorikai, Genesis Engine
                 {2}{White}{Blue}
                 Legendary Artifact - Vehicle
                 Mythic
