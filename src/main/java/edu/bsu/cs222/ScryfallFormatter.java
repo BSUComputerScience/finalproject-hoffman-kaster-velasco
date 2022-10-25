@@ -9,6 +9,8 @@ public class ScryfallFormatter {
         String formattedString = "";
 
         ColorFormatter colorFormatter = new ColorFormatter();
+
+
         formattedString = formattedString + cardList[0].getCardName() + "\n" + colorFormatter.format(cardList[0].getConvertedManaCost()) + "\n"
                 + cardList[0].getCardType() + "\n" + cardList[0].getCardRarity() + "\n" + cardList[0].getCardAbilities()
                 + "\n" + cardList[0].getCardFlavorText() + "\n" + cardList[0].getCardPower() + "\n" + cardList[0].getCardToughness()
