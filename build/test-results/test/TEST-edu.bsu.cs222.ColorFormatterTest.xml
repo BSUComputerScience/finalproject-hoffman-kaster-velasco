@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ColorFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-24T23:52:47" hostname="DESKTOP-MF2RL19" time="0.016">
+<testsuite name="edu.bsu.cs222.ColorFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-25T16:46:08" hostname="DESKTOP-U2RNP9U" time="0.021">
   <properties/>
-  <testcase name="ColorFormatterTest()" classname="edu.bsu.cs222.ColorFormatterTest" time="0.016"/>
-  <system-out><![CDATA[White, Blue, Black, Red, Green
-]]></system-out>
+  <testcase name="ColorFormatterTest()" classname="edu.bsu.cs222.ColorFormatterTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

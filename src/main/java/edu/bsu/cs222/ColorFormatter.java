@@ -9,7 +9,7 @@ public class ColorFormatter {
         String green = red.replace("G","Green");
         //String formattedColors = green.replaceAll("[{}]", "");
         String formattedCardColors = green.substring(0, green.length());
-        System.out.println(formattedCardColors);
+        //System.out.println(formattedCardColors);
         return formattedCardColors;
     }
 }

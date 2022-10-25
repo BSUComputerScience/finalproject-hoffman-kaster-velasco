@@ -37,7 +37,6 @@ public class ScryfallParser {
         } else {
             flavorText = cardFlavorTextArray.get(0).toString();
         }
-
         return name;
     }
 }
