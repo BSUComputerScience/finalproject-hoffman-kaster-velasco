@@ -12,7 +12,7 @@ public class ParserTest {
     public void scryfallParserTest() throws IOException {
         ScryfallParser scryfallParser = new ScryfallParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("scryfallParserTestReturn.json");
-        String parseDataStream = scryfallParser.parse(testDataStream);
-        Assertions.assertEquals("Kamiz, Obscura Oculus", parseDataStream);
+        Card parseDataStream = scryfallParser.parse(testDataStream);
+        Assertions.assertEquals("Kamiz, Obscura Oculus", parseDataStream.getCardName());
     }
 }
