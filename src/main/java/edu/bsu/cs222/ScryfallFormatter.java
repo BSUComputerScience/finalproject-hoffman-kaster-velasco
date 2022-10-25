@@ -8,11 +8,11 @@ public class ScryfallFormatter {
 
         String formattedString = "";
 
-
-        formattedString = formattedString + cardList[0].getCardName() + "\n" + cardList[0].getConvertedManaCost() + "\n"
+        ColorFormatter colorFormatter = new ColorFormatter();
+        formattedString = formattedString + cardList[0].getCardName() + "\n" + colorFormatter.format(cardList[0].getConvertedManaCost()) + "\n"
                 + cardList[0].getCardType() + "\n" + cardList[0].getCardRarity() + "\n" + cardList[0].getCardAbilities()
                 + "\n" + cardList[0].getCardFlavorText() + "\n" + cardList[0].getCardPower() + "\n" + cardList[0].getCardToughness()
-                + "\n" + cardList[0].getCardColors();
+                + "\n" + colorFormatter.format(cardList[0].getCardColors());
         return formattedString;
     }
 }
