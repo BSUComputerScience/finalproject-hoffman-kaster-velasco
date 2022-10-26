@@ -33,8 +33,8 @@ public class Main {
     Card getCardInfo(String userInputtedCardName) throws IOException {
         URL encodedURL = ScryfallReader.encodeURL(userInputtedCardName);
         InputStream cardDataStream = ScryfallReader.getScryfallStream(encodedURL);
-        ScryfallParser parser = new ScryfallParser();
-        return parser.parse(cardDataStream);
+        ScryfallParser scryfallParser = new ScryfallParser();
+        return scryfallParser.parse(cardDataStream);
 
     }
 }
