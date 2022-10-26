@@ -9,36 +9,32 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Main scryTutor = new Main();
 
-        //System.out.println("Please enter the name of a Magic: The Gathering card");
+        System.out.println("Please enter the name of a Magic: The Gathering card");
 
-        System.out.println("Returning info for 'Kamiz, Obscura Oculus'");
+        Scanner userInputScanner = new Scanner(System.in);
+        String userInputtedCardName = userInputScanner.nextLine();
 
+        Card cardInfo = scryTutor.getCardInfo(userInputtedCardName);
+        System.out.println("\n" + "Card name: " + cardInfo.getCardName() + "\n");
+        System.out.println("Converted Mana Cost: " + cardInfo.getConvertedManaCost());
+        System.out.println("Type: " + cardInfo.getCardType());
+        System.out.println("Rarity: " + cardInfo.getCardRarity());
+        System.out.println("Abilities: " + cardInfo.getCardAbilities());
+        System.out.println("Flavor Text: " + cardInfo.getCardFlavorText());
+        System.out.println("Power: " + cardInfo.getCardPower());
+        System.out.println("Toughness: " + cardInfo.getCardToughness());
+        System.out.println("Colors: " + cardInfo.getCardColors());
 
-        //Scanner userInputScanner = new Scanner(System.in);
-        //String userInputtedCardName = userInputScanner.nextLine();
-        String testInput = "Kamiz Obscura Oculus:";
-
-        String cardInfo = scryTutor.getCardInfo(testInput);
-        System.out.println(cardInfo);
-
+        //String formattedCardData = ScryfallFormatter.formatJson(new Card[]{cardInfo});
+        //System.out.println("\n" + formattedCardData);
 
 
     }
-    String getCardInfo(String userInputtedCardName) throws IOException {
-        ScryfallReader scryfallReader = new ScryfallReader();
-        URL encodedURL = scryfallReader.encodeURL(userInputtedCardName);
-        //InputStream cardDataStream = scryfallReader.getScryfallStream(encodedURL);
-        System.out.println(encodedURL);
-        /*
+    Card getCardInfo(String userInputtedCardName) throws IOException {
+        URL encodedURL = ScryfallReader.encodeURL(userInputtedCardName);
+        InputStream cardDataStream = ScryfallReader.getScryfallStream(encodedURL);
         ScryfallParser parser = new ScryfallParser();
-        Card parsedCardData = parser.parse(cardDataStream);
-        String cardName = parsedCardData.getCardName();
-        System.out.println(cardName);
-        String formattedCardData = ScryfallFormatter.formatJson(new Card[]{parsedCardData});
-        return formattedCardData;
-        */
-
-        return "";
+        return parser.parse(cardDataStream);
 
     }
 }
