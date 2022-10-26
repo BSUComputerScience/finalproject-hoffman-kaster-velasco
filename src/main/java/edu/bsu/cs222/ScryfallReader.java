@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URLConnection;
 import java.net.URL;
 
+
 public class ScryfallReader {
 
     public static InputStream getScryfallStream(URL encodedUrl) throws IOException {
@@ -14,9 +15,9 @@ public class ScryfallReader {
         return connection.getInputStream();
     }
 
-    public static URL encodeURL (String cardName){
-        String scryfallCardName = new String(cardName.replaceAll(" ","+"));
-        String urlString = String.format("api.scryfall.com/cards/named?fuzzy=%s", scryfallCardName);
+    public static URL encodeURL (String cardName) {
+        String scryfallCardName = (cardName.replaceAll(" ","+"));
+        String urlString = String.format("https://api.scryfall.com/cards/named?fuzzy=%s", scryfallCardName);
         URL url = null;
         try {
             url = new URL(urlString.replaceAll(" ", "%20"));
