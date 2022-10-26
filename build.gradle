@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'application'
 }
 
 group 'edu.bsu.cs222'
@@ -13,9 +15,16 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     implementation group: 'com.jayway.jsonpath', name: 'json-path', version: '2.7.0'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.19.0'
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '2.0.0'
 }
 
 test {
     useJUnitPlatform()
 }
+
+javafx {
+    version = '18.0.1'
+    modules = [  'javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'edu.bsu.cs222.Gui'
