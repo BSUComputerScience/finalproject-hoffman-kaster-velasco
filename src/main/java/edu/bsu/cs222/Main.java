@@ -15,20 +15,29 @@ public class Main {
         String userInputtedCardName = userInputScanner.nextLine();
 
         Card cardInfo = scryTutor.getCardInfo(userInputtedCardName);
-        System.out.println("\n" + "Card name: " + cardInfo.getCardName() + "\n");
-        System.out.println("Converted Mana Cost: " + cardInfo.getConvertedManaCost());
-        System.out.println("Type: " + cardInfo.getCardType());
-        System.out.println("Rarity: " + cardInfo.getCardRarity());
-        System.out.println("Abilities: " + cardInfo.getCardAbilities());
-        System.out.println("Flavor Text: " + cardInfo.getCardFlavorText());
-        System.out.println("Power: " + cardInfo.getCardPower());
-        System.out.println("Toughness: " + cardInfo.getCardToughness());
-        System.out.println("Colors: " + cardInfo.getCardColors());
-
+        if (cardInfo.getCardFlavorText().isBlank()){
+            System.out.println("\n" + "Card name: " + cardInfo.getCardName() + "\n");
+            System.out.println("Converted Mana Cost: " + cardInfo.getConvertedManaCost());
+            System.out.println("Type: " + cardInfo.getCardType());
+            System.out.println("Rarity: " + cardInfo.getCardRarity());
+            System.out.println("Abilities: " + cardInfo.getCardAbilities());
+            System.out.println("Power: " + cardInfo.getCardPower());
+            System.out.println("Toughness: " + cardInfo.getCardToughness());
+            System.out.println("Colors: " + cardInfo.getCardColors());
+        } else {
+            System.out.println("\n" + "Card name: " + cardInfo.getCardName() + "\n");
+            System.out.println("Converted Mana Cost: " + cardInfo.getConvertedManaCost());
+            System.out.println("Type: " + cardInfo.getCardType());
+            System.out.println("Rarity: " + cardInfo.getCardRarity());
+            System.out.println("Abilities: " + cardInfo.getCardAbilities());
+            System.out.println("Flavor Text: " + cardInfo.getCardFlavorText());
+            System.out.println("Power: " + cardInfo.getCardPower());
+            System.out.println("Toughness: " + cardInfo.getCardToughness());
+            System.out.println("Colors: " + cardInfo.getCardColors());
+        }
+        //---VERSION of this using formatter class instead---
         //String formattedCardData = ScryfallFormatter.formatJson(new Card[]{cardInfo});
         //System.out.println("\n" + formattedCardData);
-
-
     }
     Card getCardInfo(String userInputtedCardName) throws IOException {
         URL encodedURL = ScryfallReader.encodeURL(userInputtedCardName);
