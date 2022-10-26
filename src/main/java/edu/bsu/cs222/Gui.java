@@ -13,7 +13,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import net.minidev.json.JSONArray;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
