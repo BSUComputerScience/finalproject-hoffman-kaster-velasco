@@ -38,13 +38,12 @@ public class ScryfallParser {
         }
 
         Card cardList = new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors);
-        ScryfallFormatter scryfallFormatter = new ScryfallFormatter();
-        Card[] card = new Card[1];
-        card[0] = cardList;
-        scryfallFormatter.formatJson(card);
+        //ScryfallFormatter scryfallFormatter = new ScryfallFormatter();
+        //Card[] card = new Card[1];
+        //card[0] = cardList;
+        //scryfallFormatter.formatJson(card);
 
         return cardList;
-
 
     }
 }
