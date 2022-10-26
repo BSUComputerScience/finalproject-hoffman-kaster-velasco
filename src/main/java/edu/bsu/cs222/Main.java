@@ -11,14 +11,16 @@ public class Main {
 
         System.out.println("Please enter the name of a Magic: The Gathering card");
 
-        ColorFormatter colorFormatter = new ColorFormatter();
         Scanner userInputScanner = new Scanner(System.in);
         String userInputtedCardName = userInputScanner.nextLine();
 
         Card cardInfo = scryTutor.getCardInfo(userInputtedCardName);
-        //---VERSION of this using formatter class instead---
-        //String formattedCardData = ScryfallFormatter.formatJson(new Card[]{cardInfo});
-        //System.out.println("\n" + formattedCardData);
+
+        System.out.println("Card name: " + cardInfo.getCardName());
+
+        String formattedCardData = ScryfallFormatter.formatJson(new Card[]{cardInfo});
+
+        System.out.println("\n" + formattedCardData);
     }
     Card getCardInfo(String userInputtedCardName) throws IOException {
         URL encodedURL = ScryfallReader.encodeURL(userInputtedCardName);

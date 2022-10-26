@@ -27,7 +27,6 @@ public class ScryfallFormatter {
                     + "\n" + "Toughness: " + cardList[0].getCardToughness()
                     + "\n" + "Colors: " + colorFormatter.format(cardList[0].getCardColors());
         }
-        System.out.println(formattedCard);
         return formattedCard;
     }
 }
