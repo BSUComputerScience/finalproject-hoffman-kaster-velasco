@@ -12,7 +12,7 @@ public class ScryfallParser {
         //Parse cardData String for attributes, place in JSONArray
         JSONArray cardNameArray = JsonPath.read(cardData, "$..name");
         JSONArray cardManaCostArray = JsonPath.read(cardData, "$..mana_cost");
-        JSONArray cardTypeArray = JsonPath.read(cardData, "$..set_type");
+        JSONArray cardTypeArray = JsonPath.read(cardData, "$..type_line");
         JSONArray cardRarityArray = JsonPath.read(cardData, "$..rarity");
         JSONArray cardAbilitiesArray = JsonPath.read(cardData, "$..oracle_text");
         JSONArray cardFlavorTextArray = JsonPath.read(cardData, "$..flavor_text");
