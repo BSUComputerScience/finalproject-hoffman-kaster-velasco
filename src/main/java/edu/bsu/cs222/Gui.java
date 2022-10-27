@@ -23,6 +23,7 @@ public class Gui extends Application{
     Label description;
     TextField cardToCheck;
     Button checkButton;
+    Text correctCardName;
     Text cardAttributes;
 
     @Override
@@ -45,6 +46,8 @@ public class Gui extends Application{
         checkButton = new Button("SEARCH");
         checkButton.setFont(Font.font("Consolas"));
         grid.add(checkButton, 1, 4);
+        correctCardName = new Text();
+        grid.add(correctCardName,1,6);
         cardAttributes = new Text();
         grid.add(cardAttributes,1,7);
 
@@ -64,7 +67,9 @@ public class Gui extends Application{
     }
 
     private void handleButtonClick() throws IOException {
+
         String userEntry = cardToCheck.getText();
+        /*
         URL scryFallUrl = ScryfallReader.encodeURL(userEntry);
         InputStream scryFallStream = null;
         try {
@@ -74,6 +79,19 @@ public class Gui extends Application{
             cardAttributes.setText("Try again when connected to the internet.");
             displayNetworkErrorDialog();
         }
+        */
+        if (userEntry.isEmpty()) {
+            correctCardName.setText("No Card Name Was Entered");
+            cardAttributes.setText("");
+        }
+        else {
+            Main scryTutor = new Main();
+            Card cardInfo = scryTutor.getCardInfo(userEntry);
+            correctCardName.setText(cardInfo.getCardName());
+            String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
+            cardAttributes.setText(formattedCardAttributes);
+        }
+
     }
 
     private void displayNetworkErrorDialog(){
@@ -88,10 +106,4 @@ public class Gui extends Application{
         stage.showAndWait();
     }
 
-    Card getCardInfo(String userInputtedCardName) throws IOException {
-        URL encodedURL = ScryfallReader.encodeURL(userInputtedCardName);
-        InputStream cardDataStream = ScryfallReader.getScryfallStream(encodedURL);
-        ScryfallParser scryfallParser = new ScryfallParser();
-        return scryfallParser.parse(cardDataStream);
-    }
 }
