@@ -26,24 +26,27 @@ public class ScryfallParser {
         String type = cardTypeArray.get(0).toString();
         String rarity = cardRarityArray.get(0).toString();
         String abilities = cardAbilitiesArray.get(0).toString();
-        String power = cardPowerArray.get(0).toString();
-        String toughness = cardToughnessArray.get(0).toString();
+        String power = "";
+        String toughness = "";
         String colors = cardColorsArray.get(0).toString();
         String flavorText = "";
 
-        //Only convert FlavorText to String if there is something in the cardFlavorTextArray
+        //Only convert FlavorText, power, and toughness to String if there is something in the array
         if (cardFlavorTextArray.isEmpty()) {
         } else {
             flavorText = cardFlavorTextArray.get(0).toString();
         }
+        if (cardPowerArray.isEmpty()) {
+        } else {
+            power = cardPowerArray.get(0).toString();
+        }
+        if (cardToughnessArray.isEmpty()) {
+        } else {
+            toughness = cardToughnessArray.get(0).toString();
+        }
 
-        Card cardList = new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors);
-        //ScryfallFormatter scryfallFormatter = new ScryfallFormatter();
-        //Card[] card = new Card[1];
-        //card[0] = cardList;
-        //scryfallFormatter.formatJson(card);
 
-        return cardList;
+        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors);
 
     }
 }
