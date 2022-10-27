@@ -35,7 +35,7 @@ public class Gui extends Application{
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        sceneTitle = new Text("Scry Tutor");
+        sceneTitle = new Text("ScryTutor Card Search");
         sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
         grid.add(sceneTitle, 0, 0, 2, 1);
         description = new Label("Enter Card Name: ");
@@ -61,7 +61,7 @@ public class Gui extends Application{
         });
         Scene scene = new Scene(grid, 440, 240);
         stage.setMaximized(true);
-        stage.setTitle("Wikipedia Revision Checker");
+        stage.setTitle("ScryTutor - Magic: The Gathering Card Database");
         stage.setScene(scene);
         stage.show();
     }
