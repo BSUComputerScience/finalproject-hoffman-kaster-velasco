@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.scryfallFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-26T17:19:16" hostname="DESKTOP-MF2RL19" time="0.001">
+<testsuite name="edu.bsu.cs222.scryfallFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-27T16:40:05" hostname="CURLYFRYLAPTOP" time="0.05">
   <properties/>
-  <testcase name="ScryfallCardFormatterTest()" classname="edu.bsu.cs222.scryfallFormatterTest" time="0.001"/>
+  <testcase name="ScryfallCardFormatterTest()" classname="edu.bsu.cs222.scryfallFormatterTest" time="0.05"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
