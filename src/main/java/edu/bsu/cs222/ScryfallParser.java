@@ -52,7 +52,7 @@ public class ScryfallParser {
         }
 
 
-        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors);
+        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty);
 
     }
 }
