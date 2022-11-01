@@ -19,6 +19,7 @@ public class ScryfallParser {
         JSONArray cardPowerArray = JsonPath.read(cardData, "$..power");
         JSONArray cardToughnessArray = JsonPath.read(cardData, "$..toughness");
         JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
+        JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
 
         //Convert JSONArrays to Strings
         String name = cardNameArray.get(0).toString();
@@ -30,6 +31,7 @@ public class ScryfallParser {
         String toughness = "";
         String colors = cardColorsArray.get(0).toString();
         String flavorText = "";
+        String loyalty = "";
 
         //Only convert FlavorText, power, and toughness to String if there is something in the array
         if (cardFlavorTextArray.isEmpty()) {
@@ -43,6 +45,10 @@ public class ScryfallParser {
         if (cardToughnessArray.isEmpty()) {
         } else {
             toughness = cardToughnessArray.get(0).toString();
+        }
+        if (cardLoyaltyArray.isEmpty()) {
+        } else {
+            loyalty = cardLoyaltyArray.get(0).toString();
         }
 
 
