@@ -32,7 +32,10 @@ public class ScryfallParser {
 
         if (cardNameValidityCheck == "error") {
             System.out.println("error detected");
-            System.exit(3);
+            JSONArray errorMessage = JsonPath.read(cardData, "$..details");
+            System.out.println(errorMessage.toString());
+            name = errorMessage.get(0).toString();
+            return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
 
             JSONArray cardNameArray = JsonPath.read(cardData, "$..name");
