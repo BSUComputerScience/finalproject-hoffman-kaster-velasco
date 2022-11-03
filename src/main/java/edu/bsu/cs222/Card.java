@@ -11,9 +11,14 @@ public class Card {
     private String power;
     private String toughness;
     private String colors;
+    private String loyalty;
+    private String usd;
+    private String imageLink;
+    private String storeLink;
 
     public Card(String cardName, String cmc, String type, String rarity, String abilities,
-                String flavorText, String power, String toughness, String colors){
+                String flavorText, String power, String toughness, String colors,
+                String loyalty, String usd, String imageLink, String storeLink){
         this.cardName = cardName;
         this.convertedManaCost = cmc;
         this.type = type;
@@ -23,6 +28,10 @@ public class Card {
         this.power = power;
         this.toughness = toughness;
         this.colors = colors;
+        this.loyalty = loyalty;
+        this.usd = usd;
+        this.imageLink = imageLink;
+        this.storeLink = storeLink;
     }
 
     public String getCardName(){ return cardName; }
@@ -42,5 +51,13 @@ public class Card {
     public String getCardToughness(){ return toughness; }
 
     public String getCardColors(){ return colors; }
+
+    public String getCardLoyalty(){ return loyalty; }
+
+    public String getCardUsd(){ return usd; }
+
+    public String getCardImageLink(){ return imageLink; }
+
+    public String getCardStoreLink(){ return storeLink; }
 
 }
