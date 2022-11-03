@@ -21,5 +21,6 @@ public class ParserTest {
         ScryfallParser scryfallParser = new ScryfallParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("invalidCardReturn.json");
         Card parseDataStream = scryfallParser.parse(testDataStream);
-        Assertions.assertEquals("error", parseDataStream.getCardName());
+        Assertions.assertEquals("No cards found matching", parseDataStream.getCardName());
+    }
 }

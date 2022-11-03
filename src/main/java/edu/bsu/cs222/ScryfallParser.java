@@ -13,28 +13,29 @@ public class ScryfallParser {
         JSONArray cardNameValidityCheckArray = JsonPath.read(cardData, "$..object");
 
         String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
-        System.out.println("Should equal error: " + cardNameValidityCheck);
+        cardNameValidityCheck.trim();
+        //System.out.println("Should equal error: " + cardNameValidityCheck);
+        String error = "error";
+        String name = "";
+        String convertedManaCost = "";
+        String type = "";
+        String rarity = "";
+        String abilities = "";
+        String flavorText = "";
+        String power = "";
+        String toughness = "";
+        String colors = "";
+        String loyalty = "";
+        String usd = "";
+        String imageLink = "";
+        String storeLink = "";
 
-        String name = null;
-        String convertedManaCost = null;
-        String type = null;
-        String rarity = null;
-        String abilities = null;
-        String flavorText = null;
-        String power = null;
-        String toughness = null;
-        String colors = null;
-        String loyalty = null;
-        String usd = null;
-        String imageLink = null;
-        String storeLink = null;
 
-
-        if (cardNameValidityCheck == "error") {
+        if (cardNameValidityCheck == error) {
             System.out.println("error detected");
             JSONArray errorMessage = JsonPath.read(cardData, "$..details");
             System.out.println(errorMessage.toString());
-            name = errorMessage.get(0).toString();
+            name = errorMessage.toString();
             return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
 
@@ -59,11 +60,7 @@ public class ScryfallParser {
             type = cardTypeArray.get(0).toString();
             rarity = cardRarityArray.get(0).toString();
             abilities = cardAbilitiesArray.get(0).toString();
-            power = "";
-            toughness = "";
             colors = cardColorsArray.get(0).toString();
-            flavorText = "";
-            loyalty = "";
             usd = cardUSDArray.get(0).toString();
             imageLink = cardImageLink.get(0).toString();
             storeLink = cardStoreLink.get(0).toString();
