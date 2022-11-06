@@ -5,14 +5,23 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -25,14 +34,16 @@ public class Gui extends Application{
     Button checkButton;
     Text correctCardName;
     Text cardAttributes;
+    Hyperlink hpl;
 
     @Override
     public void start(Stage stage) {
-
+        VBox vbox = new VBox();
+        WebView browser = new WebView();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
+        grid.setHgap(15);
+        grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         sceneTitle = new Text("ScryTutor Card Search");
@@ -50,6 +61,13 @@ public class Gui extends Application{
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
         grid.add(cardAttributes,1,7);
+        hpl = new Hyperlink("Click");
+        hpl.setFont(Font.font("Arial", 14));
+        grid.add(hpl, 1, 10);
+        final String url = "https://www.tcgplayer.com/product/263096/magic-commander-kamigawa-neon-dynasty-shorikai-genesis-engine?Language=English";
+        hpl.setOnAction(ActionEvent -> {
+            getHostServices().showDocument("https://www.tcgplayer.com/product/263096/magic-commander-kamigawa-neon-dynasty-shorikai-genesis-engine?Language=English");
+       });
 
         checkButton.setOnAction(actionEvent -> {
             try {
@@ -62,12 +80,16 @@ public class Gui extends Application{
         Scene scene = new Scene(grid, 440, 240);
         stage.setMaximized(true);
         stage.setTitle("ScryTutor - Magic: The Gathering Card Database");
+        HBox hbox = new HBox(8);
+        hbox.setAlignment(Pos.BASELINE_CENTER);
+        //hbox.getChildren().addAll(hpl);
+        vbox.getChildren().addAll(hbox, browser);
+        VBox.setVgrow(browser, Priority.ALWAYS);
         stage.setScene(scene);
         stage.show();
     }
 
     private void handleButtonClick() throws IOException {
-
         String userEntry = cardToCheck.getText();
         /*
         URL scryFallUrl = ScryfallReader.encodeURL(userEntry);
@@ -90,6 +112,7 @@ public class Gui extends Application{
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
+
         }
 
     }
@@ -104,6 +127,10 @@ public class Gui extends Application{
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    private void hyperLink(){
+
     }
 
 }
