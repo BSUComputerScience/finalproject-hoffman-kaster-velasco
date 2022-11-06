@@ -31,6 +31,7 @@ public class Gui extends Application{
     Text correctCardName;
     Text cardAttributes;
     Image cardImg;
+    Text blahbbage;
 
     @Override
     public void start(Stage stage) {
@@ -51,16 +52,17 @@ public class Gui extends Application{
         grid.add(cardToCheck, 1, 1);
         checkButton = new Button("SEARCH");
         checkButton.setFont(Font.font("Consolas"));
-        grid.add(checkButton, 1, 4);
+        grid.add(checkButton, 2, 1);
         correctCardName = new Text();
         correctCardName.setFont(Font.font("Consolas",FontWeight.BOLD,45));
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
-        cardAttributes.setFont(Font.font("Consolas",FontWeight.NORMAL,18));
+        cardAttributes.setFont(Font.font("Consolas",FontWeight.NORMAL,15));
         cardAttributes.setWrappingWidth(700);
         grid.add(cardAttributes,1,7);
+
         ImageView imgView = new ImageView(cardImg);
-        grid.add(imgView,1,8);
+        grid.add(imgView,0,8);
 
         checkButton.setOnAction(actionEvent -> {
             try {
