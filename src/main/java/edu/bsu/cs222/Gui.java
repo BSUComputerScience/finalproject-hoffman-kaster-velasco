@@ -31,7 +31,6 @@ public class Gui extends Application{
     Text correctCardName;
     Text cardAttributes;
     Image cardImg;
-    Text blahbbage;
 
     @Override
     public void start(Stage stage) {
@@ -84,17 +83,17 @@ public class Gui extends Application{
     private void handleButtonClick() throws IOException {
 
         String userEntry = cardToCheck.getText();
-        /*
+
         URL scryFallUrl = ScryfallReader.encodeURL(userEntry);
         InputStream scryFallStream = null;
-        try {
+        try{
             scryFallStream = ScryfallReader.getScryfallStream(scryFallUrl);
         }
-        catch (IOException e) {
+        catch (IOException e){
             cardAttributes.setText("Try again when connected to the internet.");
             displayNetworkErrorDialog();
         }
-        */
+
         if (userEntry.isEmpty()) {
             correctCardName.setText("No Card Name Was Entered");
             cardAttributes.setText("");
