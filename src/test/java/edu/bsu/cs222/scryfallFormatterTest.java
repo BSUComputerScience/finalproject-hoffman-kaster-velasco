@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 public class scryfallFormatterTest {
 
+    /*
     @Test
     public void ScryfallCardFormatterTest() throws IOException {
         ScryfallFormatter scryfallFormatter = new ScryfallFormatter();
@@ -26,5 +27,9 @@ public class scryfallFormatterTest {
                            Power: 8
                            Toughness: 8
                            Colors: Blue, White""", formattedTestDataStream);
+
+
     }
+     */
+
 }
