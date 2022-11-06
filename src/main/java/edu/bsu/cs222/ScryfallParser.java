@@ -30,7 +30,7 @@ public class ScryfallParser {
 
         //Check if card is valid or not first, then parse data.
         if (cardNameValidityCheck.equals("error") ) {
-            name = "No matching card was found.";
+            name = "Error";
             return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
 
