@@ -3,16 +3,21 @@ package edu.bsu.cs222;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -25,6 +30,7 @@ public class Gui extends Application{
     Button checkButton;
     Text correctCardName;
     Text cardAttributes;
+    Image cardImg;
 
     @Override
     public void start(Stage stage) {
@@ -47,9 +53,14 @@ public class Gui extends Application{
         checkButton.setFont(Font.font("Consolas"));
         grid.add(checkButton, 1, 4);
         correctCardName = new Text();
+        correctCardName.setFont(Font.font("Consolas",FontWeight.BOLD,45));
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
+        cardAttributes.setFont(Font.font("Consolas",FontWeight.NORMAL,18));
+        cardAttributes.setWrappingWidth(700);
         grid.add(cardAttributes,1,7);
+        ImageView imgView = new ImageView(cardImg);
+        grid.add(imgView,1,8);
 
         checkButton.setOnAction(actionEvent -> {
             try {
@@ -59,6 +70,8 @@ public class Gui extends Application{
                 e.printStackTrace();
             }
         });
+
+
         Scene scene = new Scene(grid, 440, 240);
         stage.setMaximized(true);
         stage.setTitle("ScryTutor - Magic: The Gathering Card Database");
@@ -90,6 +103,7 @@ public class Gui extends Application{
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
+            cardImg = new Image(cardInfo.getCardImageLink());
         }
 
     }
