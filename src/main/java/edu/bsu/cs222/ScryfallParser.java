@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ScryfallParser {
-    public Card parse(InputStream cardDataStream) throws IOException {
+    public static Card parse(InputStream cardDataStream) throws IOException {
         //Turn inputstream into String for re-use
         String cardData = new String(cardDataStream.readAllBytes());
 
@@ -20,6 +20,7 @@ public class ScryfallParser {
         JSONArray cardToughnessArray = JsonPath.read(cardData, "$..toughness");
         JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
         JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
+        JSONArray cardNormalUrlArray = JsonPath.read(cardData, "$..image_urls.normal");
 
         //Convert JSONArrays to Strings
         String name = cardNameArray.get(0).toString();
@@ -32,6 +33,7 @@ public class ScryfallParser {
         String colors = cardColorsArray.get(0).toString();
         String flavorText = "";
         String loyalty = "";
+        String normalURL = cardNormalUrlArray.get(0).toString();
 
         //Only convert FlavorText, power, and toughness to String if there is something in the array
         if (cardFlavorTextArray.isEmpty()) {
@@ -52,7 +54,7 @@ public class ScryfallParser {
         }
 
 
-        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty);
+        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, normalURL);
 
     }
 }

@@ -12,9 +12,11 @@ public class Card {
     private String toughness;
     private String colors;
     private String loyalty;
+    private String normalURL;
+
 
     public Card(String cardName, String cmc, String type, String rarity, String abilities,
-                String flavorText, String power, String toughness, String colors, String loyalty){
+                String flavorText, String power, String toughness, String colors, String loyalty, String normalURL){
         this.cardName = cardName;
         this.convertedManaCost = cmc;
         this.type = type;
@@ -25,6 +27,7 @@ public class Card {
         this.toughness = toughness;
         this.colors = colors;
         this.loyalty = loyalty;
+        this.normalURL = normalURL;
     }
 
     public String getCardName(){ return cardName; }
@@ -46,5 +49,7 @@ public class Card {
     public String getCardColors(){ return colors; }
 
     public String getCardLoyalty(){ return loyalty; }
+
+    public String getNormalURL() { return normalURL; }
 
 }

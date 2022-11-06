@@ -13,9 +13,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 public class Gui extends Application{
 
@@ -25,15 +26,24 @@ public class Gui extends Application{
     Button checkButton;
     Text correctCardName;
     Text cardAttributes;
+    ImageIcon cardImage;
+    JLabel ImageLogo;
+    Card[] card = new Card[1];
+    JFrame frame = new JFrame();
+    JPanel panel;
 
     @Override
     public void start(Stage stage) {
-
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
+        JFrame mainframe = new JFrame();
+        mainframe.setContentPane(panel);
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainframe.setSize(600,400);
+        mainframe.setVisible(true);
 
         sceneTitle = new Text("ScryTutor Card Search");
         sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
@@ -50,6 +60,10 @@ public class Gui extends Application{
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
         grid.add(cardAttributes,1,7);
+        cardImage = new ImageIcon();
+        mainframe.add(cardImage);
+
+
 
         checkButton.setOnAction(actionEvent -> {
             try {
@@ -90,6 +104,8 @@ public class Gui extends Application{
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
+            ImageLogo = new JLabel(new ImageIcon(card[0].getNormalURL()));
+            frame.setContentPane(ImageLogo);
         }
 
     }
@@ -105,5 +121,7 @@ public class Gui extends Application{
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+
+
 
 }
