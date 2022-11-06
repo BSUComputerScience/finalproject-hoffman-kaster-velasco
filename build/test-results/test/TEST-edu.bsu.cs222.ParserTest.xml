@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ParserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-06T19:13:32" hostname="DESKTOP-MF2RL19" time="0.062">
+<testsuite name="edu.bsu.cs222.ParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-06T19:17:24" hostname="DESKTOP-MF2RL19" time="0.057">
   <properties/>
-  <testcase name="scryfallParserInvalidCardTest()" classname="edu.bsu.cs222.ParserTest" time="0.062"/>
+  <testcase name="scryfallParserInvalidCardTest()" classname="edu.bsu.cs222.ParserTest" time="0.049"/>
+  <testcase name="scryfallParserTest()" classname="edu.bsu.cs222.ParserTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
