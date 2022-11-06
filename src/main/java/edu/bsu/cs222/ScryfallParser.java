@@ -3,52 +3,91 @@ import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ScryfallParser {
     public Card parse(InputStream cardDataStream) throws IOException {
         //Turn inputstream into String for re-use
         String cardData = new String(cardDataStream.readAllBytes());
 
-        //Parse cardData String for attributes, place in JSONArray
-        JSONArray cardNameArray = JsonPath.read(cardData, "$..name");
-        JSONArray cardManaCostArray = JsonPath.read(cardData, "$..mana_cost");
-        JSONArray cardTypeArray = JsonPath.read(cardData, "$..type_line");
-        JSONArray cardRarityArray = JsonPath.read(cardData, "$..rarity");
-        JSONArray cardAbilitiesArray = JsonPath.read(cardData, "$..oracle_text");
-        JSONArray cardFlavorTextArray = JsonPath.read(cardData, "$..flavor_text");
-        JSONArray cardPowerArray = JsonPath.read(cardData, "$..power");
-        JSONArray cardToughnessArray = JsonPath.read(cardData, "$..toughness");
-        JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
-        //JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
+        JSONArray cardNameValidityCheckArray = JsonPath.read(cardData, "$..object");
+        String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
 
-        //Convert JSONArrays to Strings
-        String name = cardNameArray.get(0).toString();
-        String convertedManaCost = cardManaCostArray.get(0).toString();
-        String type = cardTypeArray.get(0).toString();
-        String rarity = cardRarityArray.get(0).toString();
-        String abilities = cardAbilitiesArray.get(0).toString();
+        String name;
+        String convertedManaCost = "";
+        String type = "";
+        String rarity = "";
+        String abilities = "";
+        String flavorText = "";
         String power = "";
         String toughness = "";
-        String colors = cardColorsArray.get(0).toString();
-        String flavorText = "";
+        String colors = "";
         String loyalty = "";
+        String usd = "";
+        String imageLink = "";
+        String storeLink = "";
 
-        //Only convert FlavorText, power, and toughness to String if there is something in the array
-        if (cardFlavorTextArray.isEmpty()) {
+        //Check if card is valid or not first, then parse data.
+        if (cardNameValidityCheck.equals("error")) {
+            name = "No matching card was found.";
+            return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
-            flavorText = cardFlavorTextArray.get(0).toString();
-        }
-        if (cardPowerArray.isEmpty()) {
-        } else {
-            power = cardPowerArray.get(0).toString();
-        }
-        if (cardToughnessArray.isEmpty()) {
-        } else {
-            toughness = cardToughnessArray.get(0).toString();
-        }
+
+            //Parse cardData String for attributes, place in JSONArray
+            JSONArray cardNameArray = JsonPath.read(cardData, "$..name");
+            JSONArray cardManaCostArray = JsonPath.read(cardData, "$..mana_cost");
+            JSONArray cardTypeArray = JsonPath.read(cardData, "$..type_line");
+            JSONArray cardRarityArray = JsonPath.read(cardData, "$..rarity");
+            JSONArray cardAbilitiesArray = JsonPath.read(cardData, "$..oracle_text");
+            JSONArray cardFlavorTextArray = JsonPath.read(cardData, "$..flavor_text");
+            JSONArray cardPowerArray = JsonPath.read(cardData, "$..power");
+            JSONArray cardToughnessArray = JsonPath.read(cardData, "$..toughness");
+            JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
+            JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
+            JSONArray cardUSDArray = JsonPath.read(cardData, "$..usd");
+            JSONArray cardImageLink = JsonPath.read(cardData, "$..normal");
+            JSONArray cardStoreLink = JsonPath.read(cardData, "$..tcgplayer");
+
+            //create new JSONArrayList to hold all parsed JSONArrays
+            ArrayList<JSONArray> cardAttributes = new ArrayList<>();
+            Collections.addAll(cardAttributes, cardManaCostArray, cardTypeArray, cardRarityArray, cardAbilitiesArray,
+                    cardFlavorTextArray, cardPowerArray, cardToughnessArray, cardColorsArray, cardLoyaltyArray, cardUSDArray, cardImageLink, cardStoreLink);
+
+            //Create Empty StringArrayList to hold converted JSONArrays later
+            ArrayList<String> convertedAttributes = new ArrayList<>();
+
+            //Checks all card attributes to see if they exist: leaves blank space if they don't,
+            //converts JSONArray to a string if they do exist
+            for (int i = 0; i < cardAttributes.size(); i++) {
+                if (cardAttributes.get(i).isEmpty()) {
+                    convertedAttributes.add("");
+                } else {
+                    JSONArray currentAttribute = cardAttributes.get(i);
+                    String currentAttributeString = currentAttribute.get(0).toString();
+                    convertedAttributes.add(currentAttributeString);
+                }
+            }
+            //getting all individual attributes from arraylist
+            name = cardNameArray.get(0).toString();
+            convertedManaCost = convertedAttributes.get(0);
+            type = convertedAttributes.get(1);
+            rarity = convertedAttributes.get(2);
+            abilities = convertedAttributes.get(3);
+            flavorText = convertedAttributes.get(4);
+            power = convertedAttributes.get(5);
+            toughness = convertedAttributes.get(6);
+            colors = convertedAttributes.get(7);
+            loyalty = convertedAttributes.get(8);
+            usd = convertedAttributes.get(9);
+            imageLink = convertedAttributes.get(10);
+            storeLink = convertedAttributes.get(11);
 
 
-        return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty);
+            }
+            return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
+
+        }
 
     }
-}
+

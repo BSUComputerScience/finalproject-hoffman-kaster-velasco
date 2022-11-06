@@ -15,4 +15,12 @@ public class ParserTest {
         Card parseDataStream = scryfallParser.parse(testDataStream);
         Assertions.assertEquals("Kamiz, Obscura Oculus", parseDataStream.getCardName());
     }
+
+    @Test
+    public void scryfallParserInvalidCardTest() throws IOException {
+        ScryfallParser scryfallParser = new ScryfallParser();
+        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("invalidCardReturn.json");
+        Card parseDataStream = scryfallParser.parse(testDataStream);
+        Assertions.assertEquals("No matching card was found.", parseDataStream.getCardName());
+    }
 }
