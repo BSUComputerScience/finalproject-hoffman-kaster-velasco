@@ -9,14 +9,12 @@ public class ScryfallParser {
         //Turn inputstream into String for re-use
         String cardData = new String(cardDataStream.readAllBytes());
 
-        //Parse cardData String for attributes, place in JSONArray
+
         JSONArray cardNameValidityCheckArray = JsonPath.read(cardData, "$..object");
 
         String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
-        cardNameValidityCheck.trim();
-        //System.out.println("Should equal error: " + cardNameValidityCheck);
-        String error = "error";
-        String name = "";
+
+        String name;
         String convertedManaCost = "";
         String type = "";
         String rarity = "";
@@ -30,15 +28,13 @@ public class ScryfallParser {
         String imageLink = "";
         String storeLink = "";
 
-
-        if (cardNameValidityCheck == error) {
-            System.out.println("error detected");
-            JSONArray errorMessage = JsonPath.read(cardData, "$..details");
-            System.out.println(errorMessage.toString());
-            name = errorMessage.toString();
+        //Check if card is valid or not first, then parse data.
+        if (cardNameValidityCheck.equals("error") ) {
+            name = "No matching card was found.";
             return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
 
+            //Parse cardData String for attributes, place in JSONArray
             JSONArray cardNameArray = JsonPath.read(cardData, "$..name");
             JSONArray cardManaCostArray = JsonPath.read(cardData, "$..mana_cost");
             JSONArray cardTypeArray = JsonPath.read(cardData, "$..type_line");
