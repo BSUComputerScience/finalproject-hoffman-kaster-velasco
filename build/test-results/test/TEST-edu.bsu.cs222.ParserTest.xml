@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ParserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-06T19:13:32" hostname="DESKTOP-MF2RL19" time="0.062">
+<testsuite name="edu.bsu.cs222.ParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-06T20:06:28" hostname="DESKTOP-MF2RL19" time="0.062">
   <properties/>
-  <testcase name="scryfallParserInvalidCardTest()" classname="edu.bsu.cs222.ParserTest" time="0.062"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="scryfallParserInvalidCardTest()" classname="edu.bsu.cs222.ParserTest" time="0.05"/>
+  <testcase name="scryfallParserTest()" classname="edu.bsu.cs222.ParserTest" time="0.011"/>
+  <system-out><![CDATA[Collection test: [["{1}{W}{U}{B}"], ["Legendary Creature â\u20AC\u201D Cephalid Rogue"], ["mythic"], ["Whenever you attack, target attacking creature can't be blocked this turn. It connives. Then choose another attacking creature with lesser power. That creature gains double strike until end of turn. (To have a creature connive, draw a card, then discard a card. If you discarded a nonland card, put a +1\/+1 counter on that creature.)"], [], ["2"], ["4"], [["B","U","W"]], [], ["0.36"], ["https:\/\/cards.scryfall.io\/normal\/front\/7\/4\/74b8ae28-e169-46be-8180-ebdaf80efd81.jpg?1650273145"], ["https:\/\/www.tcgplayer.com\/product\/268379?page=1&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall"]]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
