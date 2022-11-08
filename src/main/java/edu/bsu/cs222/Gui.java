@@ -17,14 +17,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 public class Gui extends Application{
 
@@ -35,6 +30,7 @@ public class Gui extends Application{
     Text correctCardName;
     Text cardAttributes;
     Hyperlink hpl;
+    String cardLink;
 
     @Override
     public void start(Stage stage) {
@@ -61,22 +57,27 @@ public class Gui extends Application{
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
         grid.add(cardAttributes,1,7);
-        hpl = new Hyperlink("Click");
-        hpl.setFont(Font.font("Arial", 14));
-        grid.add(hpl, 1, 10);
-        final String url = "https://www.tcgplayer.com/product/263096/magic-commander-kamigawa-neon-dynasty-shorikai-genesis-engine?Language=English";
-        hpl.setOnAction(ActionEvent -> {
-            getHostServices().showDocument("https://www.tcgplayer.com/product/263096/magic-commander-kamigawa-neon-dynasty-shorikai-genesis-engine?Language=English");
-       });
-
         checkButton.setOnAction(actionEvent -> {
             try {
                 handleButtonClick();
+                hpl = new Hyperlink("Go To Store Page");
+                hpl.setFont(Font.font("Arial", 14));
+                grid.add(hpl, 1, 10);
+                hpl.setOnAction(ActionEvent ->  {
+                    try {
+                        hyperLinkClick();
+                    }
+                    catch (IOException i) {
+                        i.printStackTrace();
+                    }
+                });
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
+
         Scene scene = new Scene(grid, 440, 240);
         stage.setMaximized(true);
         stage.setTitle("ScryTutor - Magic: The Gathering Card Database");
@@ -129,8 +130,14 @@ public class Gui extends Application{
         stage.showAndWait();
     }
 
-    private void hyperLink(){
-
+    private void hyperLinkClick() throws IOException{
+        String userEntry = cardToCheck.getText();
+        Main scryTutor = new Main();
+        Card cardInfo = scryTutor.getCardInfo(userEntry);
+        cardLink = cardInfo.getCardStoreLink();
+        getHostServices().showDocument(cardLink);
     }
 
 }
+
+
