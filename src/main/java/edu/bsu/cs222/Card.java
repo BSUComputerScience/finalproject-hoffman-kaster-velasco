@@ -17,7 +17,7 @@ public class Card {
     private String storeLink;
 
     public Card(String cardName, String cmc, String type, String rarity, String abilities,
-                String flavorText, String power, String toughness, String colors, String loyalty){
+                String flavorText, String power, String toughness, String colors, String loyalty, String usd, String imageLink, String storeLink){
         this.cardName = cardName;
         this.convertedManaCost = cmc;
         this.type = type;
