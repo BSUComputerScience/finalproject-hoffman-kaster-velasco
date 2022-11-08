@@ -29,12 +29,4 @@ public class ScryfallFormatter {
         }
         return formattedCard;
     }
-
-    public static String formatStoreLink(Card[] cardlist) throws IOException{
-
-        String formattedStoreLink = "";
-        formattedStoreLink = cardlist[0].getCardStoreLink();
-        return formattedStoreLink;
-    }
-
 }

@@ -17,14 +17,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 public class Gui extends Application{
 
@@ -35,6 +30,7 @@ public class Gui extends Application{
     Text correctCardName;
     Text cardAttributes;
     Hyperlink hpl;
+    String cardLink;
 
     @Override
     public void start(Stage stage) {
@@ -138,8 +134,8 @@ public class Gui extends Application{
         String userEntry = cardToCheck.getText();
         Main scryTutor = new Main();
         Card cardInfo = scryTutor.getCardInfo(userEntry);
-        String formattedCardAttributes = ScryfallFormatter.formatStoreLink(new Card[]{cardInfo});
-        getHostServices().showDocument(formattedCardAttributes);
+        cardLink = cardInfo.getCardStoreLink();
+        getHostServices().showDocument(cardLink);
     }
 
 }
