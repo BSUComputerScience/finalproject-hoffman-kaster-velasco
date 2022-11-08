@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -18,7 +19,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
+import javafx.scene.image.Image;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Gui extends Application{
@@ -31,6 +34,7 @@ public class Gui extends Application{
     Text cardAttributes;
     Hyperlink hpl;
     String cardLink;
+    String cardImgUrl;
 
     @Override
     public void start(Stage stage) {
@@ -60,6 +64,10 @@ public class Gui extends Application{
         checkButton.setOnAction(actionEvent -> {
             try {
                 handleButtonClick();
+                cardImgUrl = getCardImgUrl();
+                Image cardImg = new Image(cardImgUrl);
+                ImageView imgView = new ImageView(cardImg);
+                grid.add(imgView,0,10);
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
                 grid.add(hpl, 1, 10);
@@ -136,6 +144,13 @@ public class Gui extends Application{
         Card cardInfo = scryTutor.getCardInfo(userEntry);
         cardLink = cardInfo.getCardStoreLink();
         getHostServices().showDocument(cardLink);
+    }
+
+    private String getCardImgUrl() throws IOException{
+        String userEntry = cardToCheck.getText();
+        Main scryTutor = new Main();
+        Card cardInfo = scryTutor.getCardInfo(userEntry);
+        return cardInfo.getCardImageLink();
     }
 
 }
