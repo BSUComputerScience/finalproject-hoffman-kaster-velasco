@@ -67,7 +67,7 @@ public class Gui extends Application{
                 Image cardImg = new Image(cardImgUrl);
                 ImageView imgView = new ImageView(cardImg);
                 grid.add(imgView,0,10);
-                /reee
+                //reee
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
                 grid.add(hpl, 1, 10);
