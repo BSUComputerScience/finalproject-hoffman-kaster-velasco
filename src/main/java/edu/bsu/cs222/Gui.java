@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class Gui extends Application{
