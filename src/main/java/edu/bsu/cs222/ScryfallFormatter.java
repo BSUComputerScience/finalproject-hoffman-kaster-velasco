@@ -35,7 +35,7 @@ public class ScryfallFormatter {
         } else {
             formattedCard += "\n" + "Toughness: " + cardList[0].getCardToughness();
         }
-        if (cardList[0].getCardColors().isBlank()) {
+        if (colorFormatter.format(cardList[0].getCardColors()).isBlank()) {
         } else {
             formattedCard += "\n" + "Colors: " + colorFormatter.format(cardList[0].getCardColors());
         }
