@@ -75,14 +75,13 @@ public class ScryfallParser {
             rarity = convertedAttributes.get(2);
             abilities = convertedAttributes.get(3);
             flavorText = convertedAttributes.get(4);
-            power = convertedAttributes.get(5);
+            power = convertedAttributes.get(5).trim();
             toughness = convertedAttributes.get(6);
             colors = convertedAttributes.get(7);
             loyalty = convertedAttributes.get(8);
             usd = convertedAttributes.get(9);
             imageLink = convertedAttributes.get(10);
             storeLink = convertedAttributes.get(11);
-
 
             }
             return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
