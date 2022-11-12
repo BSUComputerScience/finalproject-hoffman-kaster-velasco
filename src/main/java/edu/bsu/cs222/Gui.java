@@ -1,18 +1,19 @@
 package edu.bsu.cs222;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -55,22 +56,29 @@ public class Gui extends Application{
         grid.add(cardToCheck, 1, 1);
         checkButton = new Button("SEARCH");
         checkButton.setFont(Font.font("Consolas"));
+        checkButton.setDefaultButton(true);
         grid.add(checkButton, 1, 4);
         correctCardName = new Text();
         grid.add(correctCardName,1,6);
         cardAttributes = new Text();
+        cardAttributes.setWrappingWidth(400);
         grid.add(cardAttributes,1,7);
-        checkButton.setOnAction(actionEvent -> {
+        checkButton.setOnAction(event -> {
             try {
                 handleButtonClick();
                 cardImgUrl = getCardImgUrl();
                 Image cardImg = new Image(cardImgUrl);
                 ImageView imgView = new ImageView(cardImg);
-                grid.add(imgView,0,10);
-                //reee
+                imgView.setFitHeight(525);
+                imgView.setFitWidth(375);
+                //StackPane stackpane = new StackPane(imgView,cardAttributes);
+                //stackpane.setAlignment(imgView, Pos.CENTER_LEFT);
+                //stackpane.setAlignment(cardAttributes, Pos.CENTER_RIGHT);
+
+                grid.add(imgView,1,9);
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
-                grid.add(hpl, 1, 10);
+                grid.add(hpl, 1, 8);
                 hpl.setOnAction(ActionEvent ->  {
                     try {
                         hyperLinkClick();

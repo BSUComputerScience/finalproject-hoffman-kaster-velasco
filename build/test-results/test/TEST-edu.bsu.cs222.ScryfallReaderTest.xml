@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ScryfallReaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-10T17:50:24" hostname="LAPTOP-1UR72CHQ" time="0.023">
+<testsuite name="edu.bsu.cs222.ScryfallReaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-10T18:31:44" hostname="LAPTOP-1UR72CHQ" time="0.02">
   <properties/>
-  <testcase name="ScryfallURLEncodeTest()" classname="edu.bsu.cs222.ScryfallReaderTest" time="0.023"/>
+  <testcase name="ScryfallURLEncodeTest()" classname="edu.bsu.cs222.ScryfallReaderTest" time="0.02"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
