@@ -15,7 +15,7 @@ public class ScryfallParser {
         String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
 
         String name;
-        String convertedManaCost = "";
+        String manaCost = "";
         String type = "";
         String rarity = "";
         String abilities = "";
@@ -31,7 +31,7 @@ public class ScryfallParser {
         //Check if card is valid or not first, then parse data.
         if (cardNameValidityCheck.equals("error")) {
             name = "No matching card was found.";
-            return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
+            return new Card(name, manaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
         } else {
 
             //Parse cardData String for attributes, place in JSONArray
@@ -70,7 +70,7 @@ public class ScryfallParser {
             }
             //getting all individual attributes from arraylist
             name = cardNameArray.get(0).toString();
-            convertedManaCost = convertedAttributes.get(0);
+            manaCost = convertedAttributes.get(0);
             type = convertedAttributes.get(1);
             rarity = convertedAttributes.get(2);
             abilities = convertedAttributes.get(3);
@@ -84,7 +84,7 @@ public class ScryfallParser {
             storeLink = convertedAttributes.get(11);
 
             }
-            return new Card(name, convertedManaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
+            return new Card(name, manaCost, type, rarity, abilities, flavorText, power, toughness, colors, loyalty, usd, imageLink, storeLink);
 
         }
 

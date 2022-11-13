@@ -1,5 +1,6 @@
 package edu.bsu.cs222;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -12,7 +13,11 @@ public class ScryfallReader {
     public static InputStream getScryfallStream(URL encodedUrl) throws IOException {
         URLConnection connection = encodedUrl.openConnection();
         connection.setRequestProperty("User-Agent", "ScryfallReader/0.1 sivelasco@bsu.edu");
-        return connection.getInputStream();
+        try {
+            return connection.getInputStream();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException ("The card you entered could not be found");
+        }
     }
 
     public static URL encodeURL (String cardName) {
