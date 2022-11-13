@@ -6,7 +6,7 @@ North Kaster
 
 Gio Velasco
 
-## General Info
+# Project Summary
 ***
 We strive to create an application that can easily assist new and experienced players of 
 Magic: The Gathering by giving them information on what a specific card does, its attributes, 
@@ -16,3 +16,32 @@ like name, mana cost, type of card it is, the rarity, description, power, toughn
 If the inputted card name is not correctly spelled or is missing some parts of the name, the application will
 match it with what they think you were trying to enter.
 
+### Target Audience:
+***
+New and experienced players of Magic: The Gathering who want to use this application on their computer to quicky obtain key card information. 
+
+### Currently Satisfied user stories:
+***
+* As a player of Magic: The Gathering, so that I can get info about a card, I want to get formatted info about a specific card from API (v0.1.0)
+
+* As a player of Magic: The Gathering, so that I can learn more about specific cards,
+to be able enter the name of a card (v0.1.0)
+
+* As a player of Magic: The Gathering, so that I can get the info of a card, I want to have a button that can be pushed to return the info of the card (v0.1.0)
+
+* As a player of Magic: The Gathering, so that I can see an image of the card, I want an image of the card I searched for to display in the GUI 
+
+* As a player of Magic: The Gathering, so that I can see the average market price of my desired card, I want to be able to see the most recent av market sell price of the card I search for.
+
+* As a player of Magic: The Gathering, so that I can easily access a marketplace to purchase a desired card, I want to click on a link and be redirected to the marketplace site.
+
+### Technology used:
+***
+* Java: https://www.java.com/en/
+* API: https://scryfall.com/docs/api 
+* JavaFX for GUI: https://openjfx.io/
+* JsonPath: https://github.com/krdev/jayway-JsonPath
+
+### Platform:
+***
+Desktop application
