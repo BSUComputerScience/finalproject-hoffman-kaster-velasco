@@ -22,20 +22,20 @@ New and experienced players of Magic: The Gathering who want to use this applica
 
 ### Currently Satisfied user stories:
 ***
-* As a player of Magic: The Gathering, so that I can get info about a card, I want to get formatted info about a specific card from API (v0.1.0)
+* (v0.1.0) As a player of Magic: The Gathering, so that I can get info about a card, I want to get formatted info about a specific card from API 
 
-* As a player of Magic: The Gathering, so that I can learn more about specific cards,
-to be able enter the name of a card (v0.1.0)
+* (v0.1.0) As a player of Magic: The Gathering, so that I can learn more about specific cards,
+to be able enter the name of a card 
 
-* As a player of Magic: The Gathering, so that I can get the info of a card, I want to have a button that can be pushed to return the info of the card (v0.1.0)
+* (v0.1.2) As a player of Magic: The Gathering, so that I can get the info of a card, I want to have a button that can be pushed to return the info of the card 
 
-* As a player of Magic: The Gathering, so that I can see an image of the card, I want an image of the card I searched for to display in the GUI 
+* (v.0.2.0) As a player of Magic: The Gathering, so that I can see an image of the card, I want an image of the card I searched for to display in the GUI
 
-* As a player of Magic: The Gathering, so that I can see the average market price of my desired card, I want to be able to see the most recent av market sell price of the card I search for.
+* (v.0.2.0) As a player of Magic: The Gathering, so that I can see the average market price of my desired card, I want to be able to see the most recent av market sell price of the card I search for.
 
-* As a player of Magic: The Gathering, so that I can easily access a marketplace to purchase a desired card, I want to click on a link and be redirected to the marketplace site.
+* (v.0.2.0) As a player of Magic: The Gathering, so that I can easily access a marketplace to purchase a desired card, I want to click on a link and be redirected to the marketplace site.
 
-### Technology used:
+### Technologies used:
 ***
 * Java: https://www.java.com/en/
 * API: https://scryfall.com/docs/api 
