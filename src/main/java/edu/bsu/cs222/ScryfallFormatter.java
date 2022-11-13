@@ -4,16 +4,16 @@ import java.io.IOException;
 
 
 public class ScryfallFormatter {
-    public static String formatJson(Card[] cardList) throws IOException {
+    public static String formatJson(Card[] cardList) {
 
 
         //ArrayList<String> cardAttributes = new ArrayList<>();
         String formattedCard = "";
         ColorFormatter colorFormatter = new ColorFormatter();
 
-        if(cardList[0].getConvertedManaCost().isBlank()){
+        if(cardList[0].getManaCost().isBlank()){
         } else {
-            formattedCard = "Converted Mana Cost:" + colorFormatter.format(cardList[0].getConvertedManaCost());
+            formattedCard = "Converted Mana Cost:" + colorFormatter.format(cardList[0].getManaCost());
         }
         if(cardList[0].getCardType().isBlank()) {
         } else {
