@@ -11,6 +11,6 @@ public class ColorFormatter {
         String blue = black.replace("U", "Blue");
         String red = blue.replace("R","Red");
         String green = red.replace("G","Green");
-        return green.replaceAll("[\\[\\]]", "");
+        return green.replaceAll("[\\[\\]\\{\\}]", "");
     }
 }
