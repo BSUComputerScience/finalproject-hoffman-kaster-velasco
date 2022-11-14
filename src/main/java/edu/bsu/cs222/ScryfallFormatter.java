@@ -1,7 +1,5 @@
 package edu.bsu.cs222;
 
-import java.io.IOException;
-
 
 public class ScryfallFormatter {
     public static String formatJson(Card[] cardList) {
@@ -10,10 +8,11 @@ public class ScryfallFormatter {
         //ArrayList<String> cardAttributes = new ArrayList<>();
         String formattedCard = "";
         ColorFormatter colorFormatter = new ColorFormatter();
+        ManaFormatter manaFormatter = new ManaFormatter();
 
         if(cardList[0].getManaCost().isBlank()){
         } else {
-            formattedCard = "Converted Mana Cost:" + colorFormatter.format(cardList[0].getManaCost());
+            formattedCard = "Mana Cost:" + manaFormatter.format(cardList[0].getManaCost());
         }
         if(cardList[0].getCardType().isBlank()) {
         } else {
