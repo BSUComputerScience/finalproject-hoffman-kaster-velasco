@@ -46,6 +46,6 @@ public class ScryfallFormatter {
         } else {
             formattedCard += "\n" + "Price (USD): $" + cardList[0].getCardUsd();
         }
-        return formattedCard;
+        return formattedCard.replaceAll("—", "-");
     }
 }

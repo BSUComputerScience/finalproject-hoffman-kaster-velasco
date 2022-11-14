@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class ColorFormatterTest {
 
     @Test
-    public void ColorFormatterTest(){
+    public void ColorFormatTest(){
         ColorFormatter colorFormatterTest = new ColorFormatter();
         String colorsTest = "\"W\",\"U\",\"B\",\"R\",\"G\"";
         String colorFormatterResult = colorFormatterTest.format(colorsTest);
