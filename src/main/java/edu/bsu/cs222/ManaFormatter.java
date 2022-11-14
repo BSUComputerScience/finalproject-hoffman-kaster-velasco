@@ -11,7 +11,7 @@ public class ManaFormatter {
         String blue = black.replace("U", "Blue");
         String red = blue.replace("R","Red");
         String green = red.replace("G","Green");
-        String costAndRemoveLeftBracket = "Mana Cost:" + green.replace("{", " ");
+        String costAndRemoveLeftBracket = green.replace("{", " ");
         String removeRightBracket = costAndRemoveLeftBracket.replace("}", ",");
         return removeRightBracket.substring(0, removeRightBracket.length()-1);
 
