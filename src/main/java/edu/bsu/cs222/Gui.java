@@ -69,8 +69,8 @@ public class Gui extends Application{
                 cardImgUrl = getCardImgUrl();
                 Image cardImg = new Image(cardImgUrl);
                 ImageView imgView = new ImageView(cardImg);
-                imgView.setFitHeight(525);
-                imgView.setFitWidth(375);
+                imgView.setFitHeight(325);
+                imgView.setFitWidth(225);
                 //StackPane stackpane = new StackPane(imgView,cardAttributes);
                 //stackpane.setAlignment(imgView, Pos.CENTER_LEFT);
                 //stackpane.setAlignment(cardAttributes, Pos.CENTER_RIGHT);
