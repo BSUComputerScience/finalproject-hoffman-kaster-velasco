@@ -10,7 +10,7 @@ public class ManaFormatterTest {
         ManaFormatter manaFormatter = new ManaFormatter();
         String colorsTest = "{2}{W}{U}";
         String colorFormatterResult = manaFormatter.format(colorsTest);
-        Assertions.assertEquals("2, White, Blue", colorFormatterResult);
+        Assertions.assertEquals(" 2, White, Blue", colorFormatterResult);
 
 
     }

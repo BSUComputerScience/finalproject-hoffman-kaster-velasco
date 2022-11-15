@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ManaFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-14T20:09:31" hostname="CURLYFRY-DESKTO" time="0.013">
+<testsuite name="edu.bsu.cs222.ManaFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-15T16:36:12" hostname="CURLYFRY-DESKTO" time="0.013">
   <properties/>
-  <testcase name="ManaFormatterTest()" classname="edu.bsu.cs222.ManaFormatterTest" time="0.013"/>
+  <testcase name="ManaFormatTest()" classname="edu.bsu.cs222.ManaFormatterTest" time="0.013"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
