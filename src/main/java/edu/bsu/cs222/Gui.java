@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -35,12 +36,11 @@ public class Gui extends Application{
     Hyperlink hpl;
     String cardLink;
     String cardImgUrl;
-
+    GridPane grid = new GridPane();
     @Override
     public void start(Stage stage) {
         VBox vbox = new VBox();
         WebView browser = new WebView();
-        GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(15);
         grid.setVgap(15);
@@ -66,30 +66,14 @@ public class Gui extends Application{
         checkButton.setOnAction(event -> {
             try {
                 handleButtonClick();
-                cardImgUrl = getCardImgUrl();
-                Image cardImg = new Image(cardImgUrl);
-                ImageView imgView = new ImageView(cardImg);
-                imgView.setFitHeight(325);
-                imgView.setFitWidth(225);
-                //StackPane stackpane = new StackPane(imgView,cardAttributes);
-                //stackpane.setAlignment(imgView, Pos.CENTER_LEFT);
-                //stackpane.setAlignment(cardAttributes, Pos.CENTER_RIGHT);
-
-                grid.add(imgView,1,9);
-                hpl = new Hyperlink("Go To Store Page");
-                hpl.setFont(Font.font("Arial", 14));
-                grid.add(hpl, 1, 8);
-                hpl.setOnAction(ActionEvent ->  {
-                    try {
-                        hyperLinkClick();
-                    }
-                    catch (IOException i) {
-                        i.printStackTrace();
-                    }
-                });
             }
             catch (IOException e) {
-                e.printStackTrace();
+                grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 8);
+                grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 9);
+                correctCardName.setText(e.getMessage());
+                correctCardName.setFill(Color.FIREBRICK);
+                cardAttributes.setText("");
+
             }
         });
 
@@ -108,37 +92,36 @@ public class Gui extends Application{
 
     private void handleButtonClick() throws IOException {
         String userEntry = cardToCheck.getText();
-        /*
-        URL scryFallUrl = ScryfallReader.encodeURL(userEntry);
-        InputStream scryFallStream = null;
-        try {
-            scryFallStream = ScryfallReader.getScryfallStream(scryFallUrl);
-        }
-        catch (IOException e) {
-            cardAttributes.setText("Try again when connected to the internet.");
-            displayNetworkErrorDialog();
-        }
-        */
-        if (userEntry.isEmpty()) {
-            correctCardName.setText("No Card Name Was Entered");
-            cardAttributes.setText("");
-        }
-        else {
             Main scryTutor = new Main();
             Card cardInfo = scryTutor.getCardInfo(userEntry);
+            correctCardName.setFill(Color.BLACK);
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
-
+            cardImgUrl = getCardImgUrl();
+            Image cardImg = new Image(cardImgUrl);
+            ImageView imgView = new ImageView(cardImg);
+            imgView.setFitHeight(325);
+            imgView.setFitWidth(225);
+            grid.add(imgView,1,9);
+            hpl = new Hyperlink("Go To Store Page");
+            hpl.setFont(Font.font("Arial", 14));
+            grid.add(hpl, 1, 8);
+            hpl.setOnAction(ActionEvent ->  {
+                try {
+                    hyperLinkClick();
+             }
+                catch (IOException i) {
+                    i.printStackTrace();
+                }
+            });
         }
 
-    }
-
-    private void displayNetworkErrorDialog(){
+    private void errorDialog(String errorMessage){
         Stage stage = new Stage();
         GridPane grid = new GridPane();
         Scene scene = new Scene(grid);
-        Text error = new Text("Network Connection Error");
+        Text error = new Text(errorMessage);
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.add(error, 0, 0, 2, 1);
         stage.setScene(scene);
