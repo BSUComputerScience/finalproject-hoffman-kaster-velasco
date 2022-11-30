@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.ScryfallFormatterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-15T16:38:38" hostname="CURLYFRY-DESKTO" time="0.006">
-  <properties/>
-  <testcase name="ScryfallCardFormatterTest()" classname="edu.bsu.cs222.ScryfallFormatterTest" time="0.006"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

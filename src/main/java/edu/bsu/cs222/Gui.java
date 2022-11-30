@@ -22,9 +22,11 @@ import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.io.InputStream;
 
-public class Gui extends Application{
+public class Gui extends Application {
 
     Text sceneTitle;
     Label description;
@@ -35,6 +37,7 @@ public class Gui extends Application{
     Hyperlink hpl;
     String cardLink;
     String cardImgUrl;
+    JTextPane actionTextPane = new JTextPane();
 
     @Override
     public void start(Stage stage) {
@@ -59,10 +62,12 @@ public class Gui extends Application{
         checkButton.setDefaultButton(true);
         grid.add(checkButton, 1, 4);
         correctCardName = new Text();
-        grid.add(correctCardName,1,6);
+        grid.add(correctCardName, 1, 6);
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
-        grid.add(cardAttributes,1,7);
+        grid.add(cardAttributes, 1, 7);
+
+
         checkButton.setOnAction(event -> {
             try {
                 handleButtonClick();
@@ -70,25 +75,23 @@ public class Gui extends Application{
                 Image cardImg = new Image(cardImgUrl);
                 ImageView imgView = new ImageView(cardImg);
                 imgView.setFitHeight(325);
-                imgView.setFitWidth(225);
+                imgView.setFitWidth(235);
                 //StackPane stackpane = new StackPane(imgView,cardAttributes);
                 //stackpane.setAlignment(imgView, Pos.CENTER_LEFT);
                 //stackpane.setAlignment(cardAttributes, Pos.CENTER_RIGHT);
 
-                grid.add(imgView,1,9);
+                grid.add(imgView, 1, 9);
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
                 grid.add(hpl, 1, 8);
-                hpl.setOnAction(ActionEvent ->  {
+                hpl.setOnAction(ActionEvent -> {
                     try {
                         hyperLinkClick();
-                    }
-                    catch (IOException i) {
+                    } catch (IOException i) {
                         i.printStackTrace();
                     }
                 });
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
@@ -122,19 +125,19 @@ public class Gui extends Application{
         if (userEntry.isEmpty()) {
             correctCardName.setText("No Card Name Was Entered");
             cardAttributes.setText("");
-        }
-        else {
+        } else {
             Main scryTutor = new Main();
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
+            JListTest();
 
         }
 
     }
 
-    private void displayNetworkErrorDialog(){
+    private void displayNetworkErrorDialog() {
         Stage stage = new Stage();
         GridPane grid = new GridPane();
         Scene scene = new Scene(grid);
@@ -146,7 +149,7 @@ public class Gui extends Application{
         stage.showAndWait();
     }
 
-    private void hyperLinkClick() throws IOException{
+    private void hyperLinkClick() throws IOException {
         String userEntry = cardToCheck.getText();
         Main scryTutor = new Main();
         Card cardInfo = scryTutor.getCardInfo(userEntry);
@@ -154,13 +157,37 @@ public class Gui extends Application{
         getHostServices().showDocument(cardLink);
     }
 
-    private String getCardImgUrl() throws IOException{
+    private String getCardImgUrl() throws IOException {
         String userEntry = cardToCheck.getText();
         Main scryTutor = new Main();
         Card cardInfo = scryTutor.getCardInfo(userEntry);
         return cardInfo.getCardImageLink();
     }
 
+    private void JListTest() {
+        String[] data = {cardAttributes.toString()};
+        switchToHtml(data);
+        replaceWithImage(data, "Red", "redMana.png");
+        //JList<String> list = new JList<>(data);
+
+    }
+
+    private void replaceWithImage(String[] data, String replace, String image) {
+        for (int i = 0; i < data.length; i++) {
+            String text = data[i];
+            InputStream manaPng = Thread.currentThread().getContextClassLoader().getResourceAsStream(image);
+            if (text.contains(replace)) {
+                text = text.replaceAll(replace, "<img src=\"" + manaPng+ "\">");
+                data[i] = text;
+            }
+        }
+    }
+
+    private void switchToHtml(String[] data) {
+        for (int i = 0; i < data.length; i++) {
+            data[i] = "<html><body>" + data[i] + "</body></html>";
+        }
+    }
 }
 
 
