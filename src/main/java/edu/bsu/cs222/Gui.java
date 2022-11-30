@@ -1,24 +1,19 @@
 package edu.bsu.cs222;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
@@ -67,13 +62,8 @@ public class Gui extends Application{
             try {
                 handleButtonClick();
             }
-            catch (IOException e) {
-                grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 8);
-                grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 9);
-                correctCardName.setText(e.getMessage());
-                correctCardName.setFill(Color.FIREBRICK);
-                cardAttributes.setText("");
-
+            catch (IOException error) {
+                showError(error);
             }
         });
 
@@ -111,22 +101,18 @@ public class Gui extends Application{
                 try {
                     hyperLinkClick();
              }
-                catch (IOException i) {
-                    i.printStackTrace();
+                catch (IOException error) {
+                    showError(error);
                 }
             });
         }
 
-    private void errorDialog(String errorMessage){
-        Stage stage = new Stage();
-        GridPane grid = new GridPane();
-        Scene scene = new Scene(grid);
-        Text error = new Text(errorMessage);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.add(error, 0, 0, 2, 1);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+    private void showError(IOException error){
+        grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 8);
+        grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 9);
+        correctCardName.setText(error.getMessage());
+        correctCardName.setFill(Color.FIREBRICK);
+        cardAttributes.setText("");
     }
 
     private void hyperLinkClick() throws IOException{
