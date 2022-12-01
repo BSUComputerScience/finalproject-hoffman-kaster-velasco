@@ -40,7 +40,7 @@ public class Gui extends Application{
         grid.setHgap(15);
         grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setBackground(new Background(new BackgroundFill(Color.web("#373737"), CornerRadii.EMPTY, Insets.EMPTY)));
+        grid.setStyle("-fx-background-color: #373737");
 
 
         sceneTitle = new Text("ScryTutor Card Search");
@@ -58,7 +58,6 @@ public class Gui extends Application{
         checkButton.setFont(Font.font("Consolas"));
         checkButton.setDefaultButton(true);
         grid.add(checkButton, 1, 4);
-
         darkModeButton = new Button("Enable Light Mode");
         darkModeButton.setFont(Font.font("Consolas"));
         grid.add(darkModeButton, 3, 0);
@@ -134,7 +133,7 @@ public class Gui extends Application{
     }
 
     private void setDarkMode(){
-        grid.setBackground(new Background(new BackgroundFill(Color.web("#373737"), CornerRadii.EMPTY, Insets.EMPTY)));
+        grid.setStyle("-fx-background-color: #373737");
         sceneTitle.setFill(Color.WHITE);
         description.setTextFill(Color.WHITE);
         cardAttributes.setFill(Color.WHITE);
@@ -147,13 +146,12 @@ public class Gui extends Application{
     }
 
     private void setLightMode(){
-        grid.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        grid.setStyle("-fx-background-color: WHITE");
         sceneTitle.setFill(Color.BLACK);
         description.setTextFill(Color.BLACK);
         cardAttributes.setFill(Color.BLACK);
         darkModeButton.setText("Enable dark mode");
         isLightModeEnabled=true;
-
         if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
             cardTitle.setFill(Color.BLACK);
         }
