@@ -26,7 +26,7 @@ public class Gui extends Application{
     Label description;
     TextField cardToCheck;
     Button checkButton;
-    Text correctCardName;
+    Text cardTitle;
     Text cardAttributes;
     Hyperlink hpl;
     String cardLink;
@@ -53,8 +53,8 @@ public class Gui extends Application{
         checkButton.setFont(Font.font("Consolas"));
         checkButton.setDefaultButton(true);
         grid.add(checkButton, 1, 4);
-        correctCardName = new Text();
-        grid.add(correctCardName,1,6);
+        cardTitle = new Text();
+        grid.add(cardTitle,1,6);
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         grid.add(cardAttributes,1,7);
@@ -64,6 +64,7 @@ public class Gui extends Application{
             }
             catch (IOException error) {
                 showError(error);
+                error.printStackTrace();
             }
         });
 
@@ -73,7 +74,6 @@ public class Gui extends Application{
         stage.setTitle("ScryTutor - Magic: The Gathering Card Database");
         HBox hbox = new HBox(8);
         hbox.setAlignment(Pos.BASELINE_CENTER);
-        //hbox.getChildren().addAll(hpl);
         vbox.getChildren().addAll(hbox, browser);
         VBox.setVgrow(browser, Priority.ALWAYS);
         stage.setScene(scene);
@@ -82,10 +82,15 @@ public class Gui extends Application{
 
     private void handleButtonClick() throws IOException {
         String userEntry = cardToCheck.getText();
+        if (userEntry.isEmpty()) {
+            cardTitle.setFill(Color.FIREBRICK);
+            cardTitle.setText("No Card Name Was Entered");
+            cardAttributes.setText("");
+        } else {
             Main scryTutor = new Main();
             Card cardInfo = scryTutor.getCardInfo(userEntry);
-            correctCardName.setFill(Color.BLACK);
-            correctCardName.setText(cardInfo.getCardName());
+            cardTitle.setFill(Color.BLACK);
+            cardTitle.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
             cardImgUrl = getCardImgUrl();
@@ -93,25 +98,25 @@ public class Gui extends Application{
             ImageView imgView = new ImageView(cardImg);
             imgView.setFitHeight(325);
             imgView.setFitWidth(225);
-            grid.add(imgView,1,9);
+            grid.add(imgView, 1, 9);
             hpl = new Hyperlink("Go To Store Page");
             hpl.setFont(Font.font("Arial", 14));
             grid.add(hpl, 1, 8);
-            hpl.setOnAction(ActionEvent ->  {
+            hpl.setOnAction(ActionEvent -> {
                 try {
                     hyperLinkClick();
-             }
-                catch (IOException error) {
+                } catch (IOException error) {
                     showError(error);
                 }
             });
         }
+    }
 
     private void showError(IOException error){
         grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 8);
         grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 9);
-        correctCardName.setText(error.getMessage());
-        correctCardName.setFill(Color.FIREBRICK);
+        cardTitle.setText(error.getMessage());
+        cardTitle.setFill(Color.FIREBRICK);
         cardAttributes.setText("");
     }
 

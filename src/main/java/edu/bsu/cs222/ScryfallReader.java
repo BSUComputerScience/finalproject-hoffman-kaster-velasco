@@ -15,7 +15,7 @@ public class ScryfallReader {
         connection.setRequestProperty("User-Agent", "ScryfallReader/0.1 sivelasco@bsu.edu");
         try {
             return connection.getInputStream();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException invalidCardError) {
             throw new FileNotFoundException ("The card you entered could not be found");
         }
     }
