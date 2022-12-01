@@ -24,12 +24,13 @@ public class Gui extends Application{
     Text sceneTitle;
     TextField cardToCheck;
     Button checkButton;
-    ToggleButton darkModeButton;
+    Button darkModeButton;
     Text cardTitle;
     Text cardAttributes;
     Hyperlink hpl;
     String cardLink;
     String cardImgUrl;
+    boolean isLightModeEnabled = false;
 
     @Override
     public void start(Stage stage) {
@@ -39,14 +40,17 @@ public class Gui extends Application{
         grid.setHgap(15);
         grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setBackground(new Background(new BackgroundFill(Color.web("#373737"), CornerRadii.EMPTY, Insets.EMPTY)));
 
 
         sceneTitle = new Text("ScryTutor Card Search");
         sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
+        sceneTitle.setFill(Color.WHITE);
         grid.add(sceneTitle, 0, 0, 2, 1);
 
         description = new Label("Enter Card Name: ");
         description.setFont(Font.font("Consolas", FontWeight.NORMAL, 12));
+        description.setTextFill(Color.WHITE);
         grid.add(description, 0, 1);
         cardToCheck = new TextField();
         grid.add(cardToCheck, 1, 1);
@@ -55,15 +59,15 @@ public class Gui extends Application{
         checkButton.setDefaultButton(true);
         grid.add(checkButton, 1, 4);
 
-        darkModeButton = new ToggleButton("Dark Mode");
+        darkModeButton = new Button("Enable Light Mode");
         darkModeButton.setFont(Font.font("Consolas"));
-        darkModeButton.setSelected(false);
         grid.add(darkModeButton, 3, 0);
 
         cardTitle = new Text();
         grid.add(cardTitle,1,6);
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
+        cardAttributes.setFill(Color.WHITE);
         grid.add(cardAttributes,1,7);
         checkButton.setOnAction(event -> {
             try {
@@ -75,7 +79,7 @@ public class Gui extends Application{
             }
         });
         darkModeButton.setOnAction(event -> {
-            if (darkModeButton.isSelected()){
+            if (isLightModeEnabled){
                 setDarkMode();
             } else {
                 setLightMode();
@@ -131,36 +135,32 @@ public class Gui extends Application{
 
     private void setDarkMode(){
         grid.setBackground(new Background(new BackgroundFill(Color.web("#373737"), CornerRadii.EMPTY, Insets.EMPTY)));
-        if (cardTitle.getFill().equals(Color.FIREBRICK)){
-            sceneTitle.setFill(Color.WHITE);
-            description.setTextFill(Color.WHITE);
-            cardAttributes.setFill(Color.WHITE);
-        }
-        else {
-            sceneTitle.setFill(Color.WHITE);
-            description.setTextFill(Color.WHITE);
+        sceneTitle.setFill(Color.WHITE);
+        description.setTextFill(Color.WHITE);
+        cardAttributes.setFill(Color.WHITE);
+        darkModeButton.setText("Enable light mode");
+        isLightModeEnabled=false;
+
+        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
             cardTitle.setFill(Color.WHITE);
-            cardAttributes.setFill(Color.WHITE);
         }
     }
 
     private void setLightMode(){
         grid.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-        if (cardTitle.getFill().equals(Color.FIREBRICK)){
-            sceneTitle.setFill(Color.BLACK);
-            description.setTextFill(Color.BLACK);
-            cardAttributes.setFill(Color.BLACK);
-        }
-        else {
-            sceneTitle.setFill(Color.BLACK);
-            description.setTextFill(Color.BLACK);
+        sceneTitle.setFill(Color.BLACK);
+        description.setTextFill(Color.BLACK);
+        cardAttributes.setFill(Color.BLACK);
+        darkModeButton.setText("Enable dark mode");
+        isLightModeEnabled=true;
+
+        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
             cardTitle.setFill(Color.BLACK);
-            cardAttributes.setFill(Color.BLACK);
         }
     }
 
     private void autoSetTextColor(Text text){
-        if (darkModeButton.isSelected()) {
+        if (!isLightModeEnabled) {
             text.setFill(Color.WHITE);
         }
         else {
