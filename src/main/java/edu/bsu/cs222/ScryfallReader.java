@@ -3,9 +3,7 @@ package edu.bsu.cs222;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URLConnection;
-import java.net.URL;
+import java.net.*;
 
 
 public class ScryfallReader {
@@ -16,7 +14,9 @@ public class ScryfallReader {
         try {
             return connection.getInputStream();
         } catch (FileNotFoundException invalidCardError) {
-            throw new FileNotFoundException ("The card you entered could not be found");
+            throw new FileNotFoundException("The card you entered could not be found");
+        } catch (UnknownHostException | NoRouteToHostException noInternetError) {
+            throw new UnknownHostException("No internet connection. Please check your connection and try again.");
         }
     }
 
