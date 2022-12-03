@@ -1,19 +1,18 @@
 package edu.bsu.cs222;
 
-import java.io.IOException;
-
 
 public class ScryfallFormatter {
-    public static String formatJson(Card[] cardList) throws IOException {
+    public static String formatJson(Card[] cardList) {
 
 
         //ArrayList<String> cardAttributes = new ArrayList<>();
         String formattedCard = "";
         ColorFormatter colorFormatter = new ColorFormatter();
+        ManaFormatter manaFormatter = new ManaFormatter();
 
-        if(cardList[0].getConvertedManaCost().isBlank()){
+        if(cardList[0].getManaCost().isBlank()){
         } else {
-            formattedCard = "Converted Mana Cost:" + colorFormatter.format(cardList[0].getConvertedManaCost());
+            formattedCard = "Mana Cost:" + manaFormatter.format(cardList[0].getManaCost());
         }
         if(cardList[0].getCardType().isBlank()) {
         } else {
@@ -35,7 +34,7 @@ public class ScryfallFormatter {
         } else {
             formattedCard += "\n" + "Toughness: " + cardList[0].getCardToughness();
         }
-        if (cardList[0].getCardColors().isBlank()) {
+        if (colorFormatter.format(cardList[0].getCardColors()).isBlank()) {
         } else {
             formattedCard += "\n" + "Colors: " + colorFormatter.format(cardList[0].getCardColors());
         }
@@ -47,6 +46,6 @@ public class ScryfallFormatter {
         } else {
             formattedCard += "\n" + "Price (USD): $" + cardList[0].getCardUsd();
         }
-        return formattedCard;
+        return formattedCard.replaceAll("—–", "-");
     }
 }
