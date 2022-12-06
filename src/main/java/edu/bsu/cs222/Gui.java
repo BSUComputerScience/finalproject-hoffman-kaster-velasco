@@ -42,7 +42,7 @@ public class Gui extends Application{
         grid.setHgap(15);
         grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setStyle("-fx-background-color: #373737");
+        grid.setStyle("-fx-background-color: #1c1c1c");
 
 
         //Add Magic logo image
@@ -50,12 +50,13 @@ public class Gui extends Application{
 
         //creating and adding all elements to grid
         sceneTitle = new Text("ScryTutor Card Search");
-        sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
+        sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 30));
+        GridPane.setHalignment(sceneTitle, Pos.BASELINE_CENTER.getHpos());
         sceneTitle.setFill(Color.WHITE);
-        grid.add(sceneTitle, 1, 4, 2, 1);
+        grid.add(sceneTitle, 1, 4);
 
         description = new Label("Enter Card Name: ");
-        description.setFont(Font.font("Consolas", FontWeight.NORMAL, 12));
+        description.setFont(Font.font("Consolas", FontWeight.NORMAL, 16));
         description.setTextFill(Color.WHITE);
         grid.add(description, 0, 5);
 
@@ -72,6 +73,8 @@ public class Gui extends Application{
         grid.add(darkModeButton, 8, 0);
 
         cardTitle = new Text();
+        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
+        cardTitle.setWrappingWidth(400);
         grid.add(cardTitle,1,6);
 
         cardAttributes = new Text();
@@ -111,7 +114,7 @@ public class Gui extends Application{
         String userEntry = cardToCheck.getText();
         if (userEntry.isEmpty()) {
             removeCardData();
-            cardTitle.setFill(Color.FIREBRICK);
+            cardTitle.setFill(Color.RED);
             cardTitle.setText("No Card Name Was Entered");
 
 
@@ -143,7 +146,7 @@ public class Gui extends Application{
     }
 
     private void setDarkMode() {
-        grid.setStyle("-fx-background-color: #373737");
+        grid.setStyle("-fx-background-color: #1c1c1c");
         setLogoImage("magiclogolight");
         sceneTitle.setFill(Color.WHITE);
         description.setTextFill(Color.WHITE);
@@ -151,7 +154,7 @@ public class Gui extends Application{
         darkModeButton.setText("Light mode");
         isLightModeEnabled=false;
 
-        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
+        if (!cardTitle.getFill().equals(Color.RED)) {
             cardTitle.setFill(Color.WHITE);
         }
     }
@@ -164,7 +167,7 @@ public class Gui extends Application{
         cardAttributes.setFill(Color.BLACK);
         darkModeButton.setText("Dark mode");
         isLightModeEnabled=true;
-        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
+        if (!cardTitle.getFill().equals(Color.RED)) {
             cardTitle.setFill(Color.BLACK);
         }
     }
@@ -175,8 +178,8 @@ public class Gui extends Application{
             Image magicLogo = new Image(magicLogoFileLightMode);
             ImageView magicLogoView = new ImageView();
             magicLogoView.setImage(magicLogo);
-            magicLogoView.setFitHeight(85);
-            magicLogoView.setFitWidth(250);
+            magicLogoView.setFitHeight(50);
+            magicLogoView.setFitWidth(215);
             GridPane.setHalignment(magicLogoView, HPos.CENTER);
             grid.add(magicLogoView, 1, 0);
         } catch (IOException e) {
@@ -202,7 +205,7 @@ public class Gui extends Application{
     private void showError(IOException error){
         removeCardData();
         cardTitle.setText(error.getMessage());
-        cardTitle.setFill(Color.FIREBRICK);
+        cardTitle.setFill(Color.RED);
     }
 
     private void hyperLinkClick() throws IOException{
