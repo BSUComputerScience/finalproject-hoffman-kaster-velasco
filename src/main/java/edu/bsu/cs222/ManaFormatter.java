@@ -15,5 +15,6 @@ public class ManaFormatter {
         String removeRightBracket = costAndRemoveLeftBracket.replace("}", ",");
         return removeRightBracket.substring(0, removeRightBracket.length()-1);
 
+
     }
 }

@@ -31,6 +31,7 @@ public class Gui extends Application{
     TextField cardToCheck;
     Button checkButton;
     Text correctCardName;
+    Text manaTypes;
     Text cardAttributes;
     Hyperlink hpl;
     String cardLink;
