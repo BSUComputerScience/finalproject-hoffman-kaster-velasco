@@ -53,20 +53,20 @@ public class Gui extends Application{
         sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 30));
         GridPane.setHalignment(sceneTitle, Pos.BASELINE_CENTER.getHpos());
         sceneTitle.setFill(Color.WHITE);
-        grid.add(sceneTitle, 1, 4);
+        grid.add(sceneTitle, 1, 1);
 
         description = new Label("Enter Card Name: ");
         description.setFont(Font.font("Consolas", FontWeight.NORMAL, 16));
         description.setTextFill(Color.WHITE);
-        grid.add(description, 0, 5);
+        grid.add(description, 0, 2);
 
         cardToCheck = new TextField();
-        grid.add(cardToCheck, 1, 5);
+        grid.add(cardToCheck, 1, 2);
 
         checkButton = new Button("SEARCH");
         checkButton.setFont(Font.font("Consolas"));
         checkButton.setDefaultButton(true);
-        grid.add(checkButton, 2, 5);
+        grid.add(checkButton, 2, 2);
 
         darkModeButton = new Button("Light Mode");
         darkModeButton.setFont(Font.font("Consolas"));
@@ -75,12 +75,12 @@ public class Gui extends Application{
         cardTitle = new Text();
         cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
         cardTitle.setWrappingWidth(400);
-        grid.add(cardTitle,1,6);
+        grid.add(cardTitle,1,3);
 
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         cardAttributes.setFill(Color.WHITE);
-        grid.add(cardAttributes,1,7);
+        grid.add(cardAttributes,1,4);
 
 
         checkButton.setOnAction(event -> {
@@ -131,10 +131,10 @@ public class Gui extends Application{
             ImageView imgView = new ImageView(cardImg);
             imgView.setFitHeight(325);
             imgView.setFitWidth(225);
-            grid.add(imgView, 1, 9);
+            grid.add(imgView, 1, 6);
             hpl = new Hyperlink("Go To Store Page");
             hpl.setFont(Font.font("Arial", 14));
-            grid.add(hpl, 1, 8);
+            grid.add(hpl, 1, 5);
             hpl.setOnAction(ActionEvent -> {
                 try {
                     hyperLinkClick();
@@ -179,7 +179,7 @@ public class Gui extends Application{
             ImageView magicLogoView = new ImageView();
             magicLogoView.setImage(magicLogo);
             magicLogoView.setFitHeight(50);
-            magicLogoView.setFitWidth(215);
+            magicLogoView.setFitWidth(180);
             GridPane.setHalignment(magicLogoView, HPos.CENTER);
             grid.add(magicLogoView, 1, 0);
         } catch (IOException e) {
@@ -198,8 +198,8 @@ public class Gui extends Application{
 
     public void removeCardData(){
         cardAttributes.setText("");
-        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 8);
-        grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 9);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 5);
+        grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 6);
     }
 
     private void showError(IOException error){
