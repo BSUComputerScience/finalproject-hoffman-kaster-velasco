@@ -48,7 +48,7 @@ public class Gui extends Application{
 
 
         //Add Magic logo image
-        setLogoImage("magiclogolight");
+        //setLogoImage("magiclogolight");
 
         //creating and adding all elements to grid
         sceneTitle = new Text("ScryTutor Card Search");
@@ -146,7 +146,7 @@ public class Gui extends Application{
 
     private void setDarkMode() {
         grid.setStyle("-fx-background-color: #373737");
-        setLogoImage("magiclogolight");
+        //setLogoImage("magiclogolight");
         sceneTitle.setFill(Color.WHITE);
         description.setTextFill(Color.WHITE);
         cardAttributes.setFill(Color.WHITE);
@@ -160,7 +160,7 @@ public class Gui extends Application{
 
     private void setLightMode(){
         grid.setStyle("-fx-background-color: WHITE");
-        setLogoImage("magiclogo");
+        //setLogoImage("magiclogo");
         sceneTitle.setFill(Color.BLACK);
         description.setTextFill(Color.BLACK);
         cardAttributes.setFill(Color.BLACK);
@@ -172,9 +172,8 @@ public class Gui extends Application{
     }
 
     private void setLogoImage(String imageName){
-        grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
-        try (InputStream magicLogoFileLightMode = new FileInputStream("C:\\Users\\north\\IdeaProjects\\" +
-                "finalproject-hoffman-kaster-velasco\\src\\main\\resources\\" + imageName + ".png")) {
+        //grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
+        try (InputStream magicLogoFileLightMode = Thread.currentThread().getContextClassLoader().getResourceAsStream("magiclogolight.jpeg");) {
             Image magicLogo = new Image(magicLogoFileLightMode);
             ImageView magicLogoView = new ImageView();
             magicLogoView.setImage(magicLogo);
