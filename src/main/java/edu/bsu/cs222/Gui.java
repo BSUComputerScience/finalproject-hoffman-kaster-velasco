@@ -44,7 +44,7 @@ public class Gui extends Application{
         WebView browser = new WebView();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(15);
+        grid.setHgap(1);
         grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
@@ -85,7 +85,7 @@ public class Gui extends Application{
                     imageView.setImage(image1);
                     imageView.setFitHeight(20);
                     imageView.setFitWidth(20);
-                    grid.add(imageView, 1, 2);
+                    grid.add(imageView, 0, 6);
                 }
                 if (cardAttributes.toString().contains("Red")) {
                     InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("redMana.png");
@@ -94,7 +94,34 @@ public class Gui extends Application{
                     imageView.setImage(image1);
                     imageView.setFitHeight(20);
                     imageView.setFitWidth(20);
-                    grid.add(imageView, 1, 4);
+                    grid.add(imageView, 1, 6);
+                }
+                if (cardAttributes.toString().contains("Green")) {
+                    InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("greenMana.png");
+                    Image image1 = new Image(manaImage);
+                    ImageView imageView = new ImageView(image1);
+                    imageView.setImage(image1);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    grid.add(imageView, 2, 6);
+                }
+                if (cardAttributes.toString().contains("Blue")) {
+                    InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blueMana.png");
+                    Image image1 = new Image(manaImage);
+                    ImageView imageView = new ImageView(image1);
+                    imageView.setImage(image1);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    grid.add(imageView, 3, 6);
+                }
+                if (cardAttributes.toString().contains("Black")) {
+                    InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blackMana.png");
+                    Image image1 = new Image(manaImage);
+                    ImageView imageView = new ImageView(image1);
+                    imageView.setImage(image1);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    grid.add(imageView, 4, 6);
                 }
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
@@ -148,14 +175,6 @@ public class Gui extends Application{
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
-            if (formattedCardAttributes.contains("whiteMana.png")){
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-            }
             cardAttributes.setText(formattedCardAttributes);
 
         }
