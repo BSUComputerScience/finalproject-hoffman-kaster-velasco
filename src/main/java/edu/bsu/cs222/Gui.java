@@ -73,13 +73,14 @@ public class Gui extends Application{
         grid.add(darkModeButton, 8, 0);
 
         cardTitle = new Text();
-        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
+        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 24));
         cardTitle.setWrappingWidth(400);
         grid.add(cardTitle,1,3);
 
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         cardAttributes.setFill(Color.WHITE);
+        cardAttributes.setFont(Font.font("Consolas", FontWeight.NORMAL, 14));
         grid.add(cardAttributes,1,4);
 
 
