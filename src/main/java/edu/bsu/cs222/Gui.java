@@ -37,7 +37,6 @@ public class Gui extends Application{
     Button searchTwo;
     Button searchThree;
     List<String> searchHistory = new ArrayList<>();
-
     boolean isLightModeEnabled = false;
 
     @Override
@@ -84,7 +83,7 @@ public class Gui extends Application{
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         cardAttributes.setFill(Color.WHITE);
-        cardAttributes.setFont(Font.font("Consolas", FontWeight.NORMAL, 14));
+        cardAttributes.setFont(Font.font("Verdana", FontWeight.NORMAL, 14));
         grid.add(cardAttributes,1,5);
 
         searchOne = new Button();
@@ -139,7 +138,7 @@ public class Gui extends Application{
             Main scryTutor = new Main();
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             autoSetTextColor(cardTitle);
-            cardTitle.setText(cardInfo.getCardName());
+            cardTitle.setText(cardInfo.getCardName()+ ":");
             searchHistory.add(0,cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
