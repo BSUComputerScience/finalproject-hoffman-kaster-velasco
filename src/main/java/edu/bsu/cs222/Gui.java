@@ -15,10 +15,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -54,56 +50,58 @@ public class Gui extends Application{
         grid.setHgap(15);
         grid.setVgap(15);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.setStyle("-fx-background-color: #373737");
+        grid.setStyle("-fx-background-color: #1c1c1c");
 
 
         //Add Magic logo image
-        //setLogoImage("magiclogolight");
+        setLogoImage("magiclogolight");
 
         //creating and adding all elements to grid
         sceneTitle = new Text("ScryTutor Card Search");
-        sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
+        sceneTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 30));
         sceneTitle.setFill(Color.WHITE);
-        grid.add(sceneTitle, 1, 4, 2, 1);
+        grid.add(sceneTitle, 1, 1);
 
         description = new Label("Enter Card Name: ");
-        description.setFont(Font.font("Consolas", FontWeight.NORMAL, 12));
+        description.setFont(Font.font("Consolas", FontWeight.NORMAL, 16));
         description.setTextFill(Color.WHITE);
-        grid.add(description, 0, 5);
+        grid.add(description, 0, 2);
 
         cardToCheck = new TextField();
-        grid.add(cardToCheck, 1, 5);
+        grid.add(cardToCheck, 1, 2);
 
         checkButton = new Button("SEARCH");
         checkButton.setFont(Font.font("Consolas"));
         checkButton.setDefaultButton(true);
-        grid.add(checkButton, 2, 5);
+        grid.add(checkButton, 2, 2);
 
         darkModeButton = new Button("Light Mode");
         darkModeButton.setFont(Font.font("Consolas"));
-        grid.add(darkModeButton, 8, 0);
+        grid.add(darkModeButton, 9, 0);
 
         cardTitle = new Text();
-        grid.add(cardTitle,1,6);
+        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 24));
+        grid.add(cardTitle,1,4);
 
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         cardAttributes.setFill(Color.WHITE);
-        grid.add(cardAttributes,1,7);
+        cardAttributes.setFont(Font.font("Consolas", FontWeight.NORMAL, 14));
+        grid.add(cardAttributes,1,5);
 
         searchOne = new Button();
         searchOne.setFont(Font.font("Consolas"));
-        grid.add(searchOne,3,5);
+        grid.add(searchOne,3,1);
         searchOne.setVisible(false);
 
         searchTwo = new Button();
         searchTwo.setFont(Font.font("Consolas"));
-        grid.add(searchTwo,3,6);
+        grid.add(searchTwo,3,2);
         searchTwo.setVisible(false);
 
         searchThree = new Button();
         searchThree.setFont(Font.font("Consolas"));
-        grid.add(searchThree,3,7);
+        grid.add(searchThree,3,3);
         searchThree.setVisible(false);
 
         checkButton.setOnAction(event -> {
@@ -134,10 +132,10 @@ public class Gui extends Application{
     }
 
     private void handleButtonClick() throws IOException {
+        removeCardData();
         String userEntry = cardToCheck.getText();
         if (userEntry.isEmpty()) {
-            removeCardData();
-            cardTitle.setFill(Color.FIREBRICK);
+            cardTitle.setFill(Color.RED);
             cardTitle.setText("No Card Name Was Entered");
 
 
@@ -199,48 +197,53 @@ public class Gui extends Application{
 
             if (cardAttributes.toString().contains("White")) {
                 InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
+                assert manaImage != null;
                 Image image1 = new Image(manaImage);
                 ImageView imageView = new ImageView(image1);
                 imageView.setImage(image1);
                 imageView.setFitHeight(20);
                 imageView.setFitWidth(20);
-                grid.add(imageView, 0, 6);
+                grid.add(imageView, 4, 4);
             }
             if (cardAttributes.toString().contains("Red")) {
                 InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("redMana.png");
+                assert manaImage != null;
                 Image image1 = new Image(manaImage);
                 ImageView imageView = new ImageView(image1);
                 imageView.setImage(image1);
                 imageView.setFitHeight(20);
                 imageView.setFitWidth(20);
-                grid.add(imageView, 1, 6);
+                grid.add(imageView, 5, 4);
             }
             if (cardAttributes.toString().contains("Green")) {
                 InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("greenMana.png");
+                assert manaImage != null;
                 Image image1 = new Image(manaImage);
                 ImageView imageView = new ImageView(image1);
                 imageView.setImage(image1);
                 imageView.setFitHeight(20);
                 imageView.setFitWidth(20);
-                grid.add(imageView, 2, 6);
+                grid.add(imageView, 6, 4);
             }
             if (cardAttributes.toString().contains("Blue")) {
                 InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blueMana.png");
+                assert manaImage != null;
                 Image image1 = new Image(manaImage);
                 ImageView imageView = new ImageView(image1);
                 imageView.setImage(image1);
                 imageView.setFitHeight(20);
                 imageView.setFitWidth(20);
-                grid.add(imageView, 3, 6);
+                grid.add(imageView, 7, 4);
             }
             if (cardAttributes.toString().contains("Black")) {
                 InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blackMana.png");
+                assert manaImage != null;
                 Image image1 = new Image(manaImage);
                 ImageView imageView = new ImageView(image1);
                 imageView.setImage(image1);
                 imageView.setFitHeight(20);
                 imageView.setFitWidth(20);
-                grid.add(imageView, 4, 6);
+                grid.add(imageView, 8, 4);
             }
 
             hpl = new Hyperlink("Go To Store Page");
@@ -257,15 +260,15 @@ public class Gui extends Application{
     }
 
     private void setDarkMode() {
-        grid.setStyle("-fx-background-color: #373737");
-        //setLogoImage("magiclogolight");
+        grid.setStyle("-fx-background-color: #1c1c1c");
+        setLogoImage("magiclogolight");
         sceneTitle.setFill(Color.WHITE);
         description.setTextFill(Color.WHITE);
         cardAttributes.setFill(Color.WHITE);
         darkModeButton.setText("Light mode");
         isLightModeEnabled=false;
 
-        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
+        if (!cardTitle.getFill().equals(Color.RED)) {
             cardTitle.setFill(Color.WHITE);
         }
     }
@@ -278,27 +281,28 @@ public class Gui extends Application{
         cardAttributes.setFill(Color.BLACK);
         darkModeButton.setText("Dark mode");
         isLightModeEnabled=true;
-        if (!cardTitle.getFill().equals(Color.FIREBRICK)) {
+        if (!cardTitle.getFill().equals(Color.RED)) {
             cardTitle.setFill(Color.BLACK);
         }
     }
 
-    /*
+
     private void setLogoImage(String imageName){
-        //grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
-        try (InputStream magicLogoFileLightMode = Thread.currentThread().getContextClassLoader().getResourceAsStream("magiclogolight.jpeg");) {
+        grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
+        try (InputStream magicLogoFileLightMode = Thread.currentThread().getContextClassLoader().getResourceAsStream(imageName +".png")) {
+            assert magicLogoFileLightMode != null;
             Image magicLogo = new Image(magicLogoFileLightMode);
             ImageView magicLogoView = new ImageView();
             magicLogoView.setImage(magicLogo);
-            magicLogoView.setFitHeight(85);
-            magicLogoView.setFitWidth(250);
+            magicLogoView.setFitHeight(50);
+            magicLogoView.setFitWidth(180);
             GridPane.setHalignment(magicLogoView, HPos.CENTER);
             grid.add(magicLogoView, 1, 0);
         } catch (IOException e) {
             showError(e);
         }
     }
-     */
+
 
     private void autoSetTextColor(Text text){
         if (!isLightModeEnabled) {
@@ -311,6 +315,12 @@ public class Gui extends Application{
 
     public void removeCardData(){
         cardAttributes.setText("");
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 4 && GridPane.getRowIndex(hpl) == 4);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 5 && GridPane.getRowIndex(hpl) == 4);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 6 && GridPane.getRowIndex(hpl) == 4);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 7 && GridPane.getRowIndex(hpl) == 4);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 8 && GridPane.getRowIndex(hpl) == 4);
+
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 8);
         grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 9);
     }
@@ -318,7 +328,7 @@ public class Gui extends Application{
     private void showError(IOException error){
         removeCardData();
         cardTitle.setText(error.getMessage());
-        cardTitle.setFill(Color.FIREBRICK);
+        cardTitle.setFill(Color.RED);
     }
 
     private void hyperLinkClick() throws IOException{

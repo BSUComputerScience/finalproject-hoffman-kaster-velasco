@@ -35,6 +35,9 @@ public class ScryfallFormatter {
         if (!cardList[0].getCardUsd().isBlank()) {
             formattedCard += "\n" + "Price (USD): $" + cardList[0].getCardUsd();
         }
-        return formattedCard.replaceAll("—–", "-");
+        String replaceEmDash = formattedCard.replace("—", "-");
+        String replaceMinus = replaceEmDash.replace("−", "-");
+
+        return replaceMinus;
     }
 }
