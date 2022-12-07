@@ -197,6 +197,52 @@ public class Gui extends Application{
                 }
             });
 
+            if (cardAttributes.toString().contains("White")) {
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+                grid.add(imageView, 0, 6);
+            }
+            if (cardAttributes.toString().contains("Red")) {
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("redMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+                grid.add(imageView, 1, 6);
+            }
+            if (cardAttributes.toString().contains("Green")) {
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("greenMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+                grid.add(imageView, 2, 6);
+            }
+            if (cardAttributes.toString().contains("Blue")) {
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blueMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+                grid.add(imageView, 3, 6);
+            }
+            if (cardAttributes.toString().contains("Black")) {
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blackMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+                grid.add(imageView, 4, 6);
+            }
+
             hpl = new Hyperlink("Go To Store Page");
             hpl.setFont(Font.font("Arial", 14));
             grid.add(hpl, 1, 8);
