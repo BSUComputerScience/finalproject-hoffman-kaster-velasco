@@ -16,9 +16,13 @@ import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Gui extends Application{
 
@@ -33,6 +37,11 @@ public class Gui extends Application{
     Hyperlink hpl;
     String cardLink;
     String cardImgUrl;
+    Button searchOne;
+    Button searchTwo;
+    Button searchThree;
+    List<String> searchHistory = new ArrayList<>();
+
     boolean isLightModeEnabled = false;
 
     @Override
@@ -40,6 +49,7 @@ public class Gui extends Application{
 
         VBox vbox = new VBox();
         WebView browser = new WebView();
+
         grid.setAlignment(Pos.TOP_CENTER);
         grid.setHgap(15);
         grid.setVgap(15);
@@ -81,6 +91,20 @@ public class Gui extends Application{
         cardAttributes.setFill(Color.WHITE);
         grid.add(cardAttributes,1,7);
 
+        searchOne = new Button();
+        searchOne.setFont(Font.font("Consolas"));
+        grid.add(searchOne,3,5);
+        searchOne.setVisible(false);
+
+        searchTwo = new Button();
+        searchTwo.setFont(Font.font("Consolas"));
+        grid.add(searchTwo,3,6);
+        searchTwo.setVisible(false);
+
+        searchThree = new Button();
+        searchThree.setFont(Font.font("Consolas"));
+        grid.add(searchThree,3,7);
+        searchThree.setVisible(false);
 
         checkButton.setOnAction(event -> {
             try {
@@ -123,6 +147,7 @@ public class Gui extends Application{
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             autoSetTextColor(cardTitle);
             cardTitle.setText(cardInfo.getCardName());
+            searchHistory.add(0,cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
             cardImgUrl = getCardImgUrl();
@@ -131,6 +156,47 @@ public class Gui extends Application{
             imgView.setFitHeight(325);
             imgView.setFitWidth(225);
             grid.add(imgView, 1, 9);
+
+            searchHistorySizeChecker();
+            searchOne.setText(searchHistory.get(0));
+            searchOne.setVisible(true);
+            searchTwo.setVisible(false);
+            searchThree.setVisible(false);
+            if (searchHistory.size()==2){
+                searchTwo.setText(searchHistory.get(1));
+                searchTwo.setVisible(true);
+            }
+            if (searchHistory.size()==3){
+                searchTwo.setText(searchHistory.get(1));
+                searchThree.setText(searchHistory.get(2));
+                searchTwo.setVisible(true);
+                searchThree.setVisible(true);
+            }
+
+            searchOne.setOnAction(ActionEvent -> {
+                try {
+                    mostRecentSearchClick();
+                } catch (IOException error){
+                    showError(error);
+                }
+            });
+
+            searchTwo.setOnAction(ActionEvent -> {
+                try {
+                    secondMostRecentSearchClick();
+                } catch (IOException error){
+                    showError(error);
+                }
+            });
+
+            searchThree.setOnAction(ActionEvent -> {
+                try {
+                    leastRecentSearchClick();
+                } catch (IOException error){
+                    showError(error);
+                }
+            });
+
             hpl = new Hyperlink("Go To Store Page");
             hpl.setFont(Font.font("Arial", 14));
             grid.add(hpl, 1, 8);
@@ -171,6 +237,7 @@ public class Gui extends Application{
         }
     }
 
+    /*
     private void setLogoImage(String imageName){
         //grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
         try (InputStream magicLogoFileLightMode = Thread.currentThread().getContextClassLoader().getResourceAsStream("magiclogolight.jpeg");) {
@@ -185,6 +252,7 @@ public class Gui extends Application{
             showError(e);
         }
     }
+     */
 
     private void autoSetTextColor(Text text){
         if (!isLightModeEnabled) {
@@ -220,6 +288,27 @@ public class Gui extends Application{
         Main scryTutor = new Main();
         Card cardInfo = scryTutor.getCardInfo(userEntry);
         return cardInfo.getCardImageLink();
+    }
+
+    private void mostRecentSearchClick() throws IOException{
+        cardToCheck.setText(searchOne.getText());
+        handleButtonClick();
+    }
+
+    private void secondMostRecentSearchClick() throws IOException{
+        cardToCheck.setText(searchTwo.getText());
+        handleButtonClick();
+    }
+
+    private void leastRecentSearchClick() throws IOException{
+        cardToCheck.setText(searchThree.getText());
+        handleButtonClick();
+    }
+
+    public void searchHistorySizeChecker(){
+        if (searchHistory.size()==4){
+            searchHistory.remove(searchHistory.size()-1);
+        }
     }
 
 }
