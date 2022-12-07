@@ -1,5 +1,8 @@
 package edu.bsu.cs222;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ManaFormatter {
     public String format(String cardMana) {
         if (cardMana.equals("[]")){
@@ -14,7 +17,6 @@ public class ManaFormatter {
         String costAndRemoveLeftBracket = green.replace("{", " ");
         String removeRightBracket = costAndRemoveLeftBracket.replace("}", ",");
         return removeRightBracket.substring(0, removeRightBracket.length()-1);
-
 
     }
 }

@@ -23,6 +23,7 @@ import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Gui extends Application{
 
@@ -77,6 +78,24 @@ public class Gui extends Application{
                 //stackpane.setAlignment(cardAttributes, Pos.CENTER_RIGHT);
 
                 grid.add(imgView,1,9);
+                if (cardAttributes.toString().contains("White")) {
+                    InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
+                    Image image1 = new Image(manaImage);
+                    ImageView imageView = new ImageView(image1);
+                    imageView.setImage(image1);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    grid.add(imageView, 1, 2);
+                }
+                if (cardAttributes.toString().contains("Red")) {
+                    InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("redMana.png");
+                    Image image1 = new Image(manaImage);
+                    ImageView imageView = new ImageView(image1);
+                    imageView.setImage(image1);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    grid.add(imageView, 1, 4);
+                }
                 hpl = new Hyperlink("Go To Store Page");
                 hpl.setFont(Font.font("Arial", 14));
                 grid.add(hpl, 1, 8);
@@ -129,6 +148,14 @@ public class Gui extends Application{
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             correctCardName.setText(cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
+            if (formattedCardAttributes.contains("whiteMana.png")){
+                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
+                Image image1 = new Image(manaImage);
+                ImageView imageView = new ImageView(image1);
+                imageView.setImage(image1);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(20);
+            }
             cardAttributes.setText(formattedCardAttributes);
 
         }

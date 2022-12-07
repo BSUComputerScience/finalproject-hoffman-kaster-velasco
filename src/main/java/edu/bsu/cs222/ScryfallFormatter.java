@@ -10,10 +10,10 @@ public class ScryfallFormatter {
         ColorFormatter colorFormatter = new ColorFormatter();
         ManaFormatter manaFormatter = new ManaFormatter();
 
-        //if(cardList[0].getManaCost().isBlank()){
-        //} else {
-        //    formattedCard = "Mana Cost:" + manaFormatter.format(cardList[0].getManaCost());
-        //}
+        if(cardList[0].getManaCost().isBlank()){
+        } else {
+            formattedCard = "Mana Cost:" + manaFormatter.format(cardList[0].getManaCost());
+        }
         if(cardList[0].getCardType().isBlank()) {
         } else {
             formattedCard += "\n" + "Type: " + cardList[0].getCardType();
