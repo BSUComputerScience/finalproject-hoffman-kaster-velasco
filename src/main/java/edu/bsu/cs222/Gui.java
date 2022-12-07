@@ -52,8 +52,6 @@ public class Gui extends Application{
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.setStyle("-fx-background-color: #1c1c1c");
 
-
-        //Add Magic logo image
         setLogoImage("magiclogolight");
 
         //creating and adding all elements to grid
@@ -132,131 +130,126 @@ public class Gui extends Application{
     }
 
     private void handleButtonClick() throws IOException {
-        removeCardData();
+        removeCardImages();
         String userEntry = cardToCheck.getText();
         if (userEntry.isEmpty()) {
             cardTitle.setFill(Color.RED);
             cardTitle.setText("No Card Name Was Entered");
-
-
         } else {
             Main scryTutor = new Main();
-
             Card cardInfo = scryTutor.getCardInfo(userEntry);
             autoSetTextColor(cardTitle);
             cardTitle.setText(cardInfo.getCardName());
             searchHistory.add(0,cardInfo.getCardName());
             String formattedCardAttributes = ScryfallFormatter.formatJson(new Card[]{cardInfo});
             cardAttributes.setText(formattedCardAttributes);
-            cardImgUrl = getCardImgUrl();
-            Image cardImg = new Image(cardImgUrl);
-            ImageView imgView = new ImageView(cardImg);
-            imgView.setFitHeight(325);
-            imgView.setFitWidth(225);
-            grid.add(imgView, 1, 9);
 
+            addHyperLink();
+            addCardImage();
             searchHistorySizeChecker();
-            searchOne.setText(searchHistory.get(0));
-            searchOne.setVisible(true);
-            searchTwo.setVisible(false);
-            searchThree.setVisible(false);
-            if (searchHistory.size()==2){
-                searchTwo.setText(searchHistory.get(1));
-                searchTwo.setVisible(true);
-            }
-            if (searchHistory.size()==3){
-                searchTwo.setText(searchHistory.get(1));
-                searchThree.setText(searchHistory.get(2));
-                searchTwo.setVisible(true);
-                searchThree.setVisible(true);
-            }
+            addSearchHistory();
+            addCardManaImages();
 
-            searchOne.setOnAction(ActionEvent -> {
-                try {
-                    mostRecentSearchClick();
-                } catch (IOException error){
-                    showError(error);
-                }
-            });
-
-            searchTwo.setOnAction(ActionEvent -> {
-                try {
-                    secondMostRecentSearchClick();
-                } catch (IOException error){
-                    showError(error);
-                }
-            });
-
-            searchThree.setOnAction(ActionEvent -> {
-                try {
-                    leastRecentSearchClick();
-                } catch (IOException error){
-                    showError(error);
-                }
-            });
-
-            if (cardAttributes.toString().contains("White")) {
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("whiteMana.png");
-                assert manaImage != null;
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-                grid.add(imageView, 4, 4);
-            }
-            if (cardAttributes.toString().contains("Red")) {
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("redMana.png");
-                assert manaImage != null;
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-                grid.add(imageView, 5, 4);
-            }
-            if (cardAttributes.toString().contains("Green")) {
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("greenMana.png");
-                assert manaImage != null;
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-                grid.add(imageView, 6, 4);
-            }
-            if (cardAttributes.toString().contains("Blue")) {
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blueMana.png");
-                assert manaImage != null;
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-                grid.add(imageView, 7, 4);
-            }
-            if (cardAttributes.toString().contains("Black")) {
-                InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream("blackMana.png");
-                assert manaImage != null;
-                Image image1 = new Image(manaImage);
-                ImageView imageView = new ImageView(image1);
-                imageView.setImage(image1);
-                imageView.setFitHeight(20);
-                imageView.setFitWidth(20);
-                grid.add(imageView, 8, 4);
-            }
-
-            hpl = new Hyperlink("Go To Store Page");
-            hpl.setFont(Font.font("Arial", 14));
-            grid.add(hpl, 1, 8);
-            hpl.setOnAction(ActionEvent -> {
-                try {
-                    hyperLinkClick();
-                } catch (IOException error) {
-                    showError(error);
-                }
-            });
         }
+    }
+    private void addHyperLink() {
+        hpl = new Hyperlink("Go To Store Page");
+        hpl.setFont(Font.font("Arial", 14));
+        grid.add(hpl, 1, 8);
+        hpl.setOnAction(ActionEvent -> {
+            try {
+                hyperLinkClick();
+            } catch (IOException error) {
+                showError(error);
+            }
+        });
+    }
+
+    private void addCardImage() throws IOException {
+        cardImgUrl = getCardImgUrl();
+        Image cardImg = new Image(cardImgUrl);
+        ImageView imgView = new ImageView(cardImg);
+        imgView.setFitHeight(325);
+        imgView.setFitWidth(225);
+        grid.add(imgView, 1, 9);
+    }
+
+    public void searchHistorySizeChecker(){
+        if (searchHistory.size()==4){
+            searchHistory.remove(searchHistory.size()-1);
+        }
+    }
+
+    private void addSearchHistory() {
+        searchOne.setText(searchHistory.get(0));
+        searchOne.setVisible(true);
+        searchTwo.setVisible(false);
+        searchThree.setVisible(false);
+        if (searchHistory.size()==2){
+            searchTwo.setText(searchHistory.get(1));
+            searchTwo.setVisible(true);
+        }
+        if (searchHistory.size()==3){
+            searchTwo.setText(searchHistory.get(1));
+            searchThree.setText(searchHistory.get(2));
+            searchTwo.setVisible(true);
+            searchThree.setVisible(true);
+        }
+
+        searchOne.setOnAction(ActionEvent -> {
+            try {
+                mostRecentSearchClick();
+            } catch (IOException error){
+                showError(error);
+            }
+        });
+
+        searchTwo.setOnAction(ActionEvent -> {
+            try {
+                secondMostRecentSearchClick();
+            } catch (IOException error){
+                showError(error);
+            }
+        });
+
+        searchThree.setOnAction(ActionEvent -> {
+            try {
+                leastRecentSearchClick();
+            } catch (IOException error){
+                showError(error);
+            }
+        });
+
+    }
+
+    private void addCardManaImages() {
+
+        if (cardAttributes.toString().contains("White")) {
+            setManaImageToColumnAndRow("whiteMana", 4);
+        }
+        if (cardAttributes.toString().contains("Red")) {
+            setManaImageToColumnAndRow("redMana", 5);
+        }
+        if (cardAttributes.toString().contains("Green")) {
+            setManaImageToColumnAndRow("greenMana", 6);
+        }
+        if (cardAttributes.toString().contains("Blue")) {
+            setManaImageToColumnAndRow("blueMana", 7);
+        }
+        if (cardAttributes.toString().contains("Black")) {
+            setManaImageToColumnAndRow("blackmana", 8);
+        }
+    }
+
+    private void setManaImageToColumnAndRow(String manaColor, int column) {
+        InputStream manaImage = Thread.currentThread().getContextClassLoader().getResourceAsStream(manaColor +".png");
+        assert manaImage != null;
+        Image image1 = new Image(manaImage);
+        ImageView imageView = new ImageView(image1);
+        imageView.setImage(image1);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+        grid.add(imageView, column, 4);
     }
 
     private void setDarkMode() {
@@ -275,7 +268,7 @@ public class Gui extends Application{
 
     private void setLightMode(){
         grid.setStyle("-fx-background-color: WHITE");
-        //setLogoImage("magiclogo");
+        setLogoImage("magiclogo");
         sceneTitle.setFill(Color.BLACK);
         description.setTextFill(Color.BLACK);
         cardAttributes.setFill(Color.BLACK);
@@ -285,7 +278,6 @@ public class Gui extends Application{
             cardTitle.setFill(Color.BLACK);
         }
     }
-
 
     private void setLogoImage(String imageName){
         grid.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1 && GridPane.getRowIndex(node) == 0);
@@ -303,7 +295,6 @@ public class Gui extends Application{
         }
     }
 
-
     private void autoSetTextColor(Text text){
         if (!isLightModeEnabled) {
             text.setFill(Color.WHITE);
@@ -313,20 +304,22 @@ public class Gui extends Application{
         }
     }
 
-    public void removeCardData(){
+    public void removeCardImages(){
+        //clears text
         cardAttributes.setText("");
+        //removes mana images based on the cell coordinates
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 4 && GridPane.getRowIndex(hpl) == 4);
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 5 && GridPane.getRowIndex(hpl) == 4);
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 6 && GridPane.getRowIndex(hpl) == 4);
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 7 && GridPane.getRowIndex(hpl) == 4);
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 8 && GridPane.getRowIndex(hpl) == 4);
-
+        //removing hyperlink and card image
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 8);
         grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 9);
     }
 
     private void showError(IOException error){
-        removeCardData();
+        removeCardImages();
         cardTitle.setText(error.getMessage());
         cardTitle.setFill(Color.RED);
     }
@@ -360,13 +353,6 @@ public class Gui extends Application{
         cardToCheck.setText(searchThree.getText());
         handleButtonClick();
     }
-
-    public void searchHistorySizeChecker(){
-        if (searchHistory.size()==4){
-            searchHistory.remove(searchHistory.size()-1);
-        }
-    }
-
 }
 
 
