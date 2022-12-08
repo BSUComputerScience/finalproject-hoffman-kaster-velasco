@@ -12,6 +12,9 @@ public class ScryfallParser {
         String cardData = new String(cardDataStream.readAllBytes());
 
         JSONArray cardNameValidityCheckArray = JsonPath.read(cardData, "$..object");
+        JSONArray checkIfOnReserveList = JsonPath.read(cardData, "$..reserved");
+        boolean isReserved = (boolean) checkIfOnReserveList.get(0);
+
         String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
 
         String name;
@@ -45,14 +48,33 @@ public class ScryfallParser {
             JSONArray cardToughnessArray = JsonPath.read(cardData, "$..toughness");
             JSONArray cardColorsArray = JsonPath.read(cardData, "$..colors");
             JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
-            JSONArray cardUSDArray = JsonPath.read(cardData, "$..usd");
             JSONArray cardImageLink = JsonPath.read(cardData, "$..normal");
             JSONArray cardStoreLink = JsonPath.read(cardData, "$..tcgplayer");
+
+            //check if card is on reserved list
+            JSONArray cardUSDArray = new JSONArray();
+            if (isReserved){
+                cardUSDArray.add(" N/A. Only available through auction. (Reserved List)");
+            }
+            else {
+                cardUSDArray = JsonPath.read(cardData, "$..usd");
+                }
+
+
+
+
+
+
+
+
+
+
 
             //create new JSONArrayList to hold all parsed JSONArrays
             ArrayList<JSONArray> cardAttributes = new ArrayList<>();
             Collections.addAll(cardAttributes, cardManaCostArray, cardTypeArray, cardRarityArray, cardAbilitiesArray,
                     cardFlavorTextArray, cardPowerArray, cardToughnessArray, cardColorsArray, cardLoyaltyArray, cardUSDArray, cardImageLink, cardStoreLink);
+
 
             //Create Empty StringArrayList to hold converted JSONArrays later
             ArrayList<String> convertedAttributes = new ArrayList<>();
