@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.*;
+import java.nio.charset.Charset;
 
 
 public class ScryfallReader {
@@ -20,12 +21,13 @@ public class ScryfallReader {
         }
     }
 
-    public static URL encodeURL (String cardName) {
-        String scryfallCardName = (cardName.replaceAll(" ","+"));
-        String urlString = String.format("https://api.scryfall.com/cards/named?fuzzy=%s", scryfallCardName);
+    public static URL encodeURL (String userInputtedCardName) {
+        String defaultCharSetUserInput = URLEncoder.encode(userInputtedCardName, Charset.defaultCharset());
+        String urlString = String.format("https://api.scryfall.com/cards/named?fuzzy=%s", defaultCharSetUserInput);
+
         URL url = null;
         try {
-            url = new URL(urlString.replaceAll(" ", "%20"));
+            url = new URL(urlString);
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
