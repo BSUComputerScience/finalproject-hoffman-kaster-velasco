@@ -77,13 +77,13 @@ public class Gui extends Application{
         grid.add(darkModeButton, 9, 0);
 
         cardTitle = new Text();
-        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 24));
+        cardTitle.setFont(Font.font("Consolas", FontWeight.NORMAL, 20));
         grid.add(cardTitle,1,4);
 
         cardAttributes = new Text();
         cardAttributes.setWrappingWidth(400);
         cardAttributes.setFill(Color.WHITE);
-        cardAttributes.setFont(Font.font("Verdana", FontWeight.NORMAL, 14));
+        cardAttributes.setFont(Font.font("Verdana", FontWeight.NORMAL, 12));
         grid.add(cardAttributes,1,5);
 
         searchOne = new Button();
