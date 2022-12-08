@@ -12,8 +12,7 @@ public class ScryfallParser {
         String cardData = new String(cardDataStream.readAllBytes());
 
         JSONArray cardNameValidityCheckArray = JsonPath.read(cardData, "$..object");
-        JSONArray checkIfOnReserveList = JsonPath.read(cardData, "$..reserved");
-        boolean isReserved = (boolean) checkIfOnReserveList.get(0);
+
 
         String cardNameValidityCheck = cardNameValidityCheckArray.get(0).toString();
 
@@ -50,6 +49,8 @@ public class ScryfallParser {
             JSONArray cardLoyaltyArray = JsonPath.read(cardData, "$..loyalty");
             JSONArray cardImageLink = JsonPath.read(cardData, "$..normal");
             JSONArray cardStoreLink = JsonPath.read(cardData, "$..tcgplayer");
+            JSONArray checkIfOnReserveList = JsonPath.read(cardData, "$..reserved");
+            boolean isReserved = (boolean) checkIfOnReserveList.get(0);
 
             //check if card is on reserved list
             JSONArray cardUSDArray = new JSONArray();
