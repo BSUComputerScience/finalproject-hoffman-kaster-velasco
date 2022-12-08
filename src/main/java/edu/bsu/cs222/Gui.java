@@ -313,8 +313,8 @@ public class Gui extends Application{
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 7 && GridPane.getRowIndex(hpl) == 4);
         grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 8 && GridPane.getRowIndex(hpl) == 4);
         //removing hyperlink and card image
-        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 8);
-        grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 9);
+        grid.getChildren().removeIf(hpl -> GridPane.getColumnIndex(hpl) == 1 && GridPane.getRowIndex(hpl) == 6);
+        grid.getChildren().removeIf(imgView -> GridPane.getColumnIndex(imgView) == 1 && GridPane.getRowIndex(imgView) == 7);
     }
 
     private void showError(IOException error){
