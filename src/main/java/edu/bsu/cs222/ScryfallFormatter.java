@@ -12,28 +12,28 @@ public class ScryfallFormatter {
             formattedCard = "Mana Cost:" + manaFormatter.format(cardList[0].getManaCost());
         }
         if (!cardList[0].getCardType().isBlank()) {
-            formattedCard += "\n\n" + "Type: " + cardList[0].getCardType();
+            formattedCard += "\n" + "Type: " + cardList[0].getCardType();
         }
         if (!cardList[0].getCardRarity().isBlank()) {
-            formattedCard += "\n\n" + "Rarity: " + cardList[0].getCardRarity();
+            formattedCard += "\n" + "Rarity: " + cardList[0].getCardRarity();
         }
         if (!cardList[0].getCardAbilities().isBlank()) {
-            formattedCard += "\n\n" + "Abilities: " + cardList[0].getCardAbilities();
+            formattedCard += "\n" + "Abilities: " + cardList[0].getCardAbilities();
         }
         if (!cardList[0].getCardPower().isBlank()) {
-            formattedCard += "\n\n" + "Power: " + cardList[0].getCardPower();
+            formattedCard += "\n" + "Power: " + cardList[0].getCardPower();
         }
         if (!cardList[0].getCardToughness().isBlank()) {
-            formattedCard += "\n\n" + "Toughness: " + cardList[0].getCardToughness();
+            formattedCard += "\n" + "Toughness: " + cardList[0].getCardToughness();
         }
         if (!colorFormatter.format(cardList[0].getCardColors()).isBlank()) {
-            formattedCard += "\n\n" + "Colors: " + colorFormatter.format(cardList[0].getCardColors());
+            formattedCard += "\n" + "Colors: " + colorFormatter.format(cardList[0].getCardColors());
         }
         if (!cardList[0].getCardLoyalty().isBlank()) {
-            formattedCard += "\n\n" + "Loyalty: " + cardList[0].getCardLoyalty();
+            formattedCard += "\n" + "Loyalty: " + cardList[0].getCardLoyalty();
         }
         if (!cardList[0].getCardUsd().isBlank()) {
-            formattedCard += "\n\n" + "Price (USD): $" + cardList[0].getCardUsd();
+            formattedCard += "\n" + "Price (USD): $" + cardList[0].getCardUsd();
         }
         String replaceEmDash = formattedCard.replace("—", "-");
         String replaceMinus = replaceEmDash.replace("−", "-");
