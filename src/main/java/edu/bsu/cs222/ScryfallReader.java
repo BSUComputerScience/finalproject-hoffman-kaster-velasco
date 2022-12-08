@@ -21,8 +21,8 @@ public class ScryfallReader {
         }
     }
 
-    public static URL encodeURL (String cardName) {
-        String defaultCharSetUserInput = URLEncoder.encode(cardName, Charset.defaultCharset());
+    public static URL encodeURL (String userInputtedCardName) {
+        String defaultCharSetUserInput = URLEncoder.encode(userInputtedCardName, Charset.defaultCharset());
         String urlString = String.format("https://api.scryfall.com/cards/named?fuzzy=%s", defaultCharSetUserInput);
 
         URL url = null;
