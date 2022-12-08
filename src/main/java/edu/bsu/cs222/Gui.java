@@ -154,7 +154,7 @@ public class Gui extends Application{
     private void addHyperLink() {
         hpl = new Hyperlink("Go To Store Page");
         hpl.setFont(Font.font("Arial", 14));
-        grid.add(hpl, 1, 8);
+        grid.add(hpl, 1, 6);
         hpl.setOnAction(ActionEvent -> {
             try {
                 hyperLinkClick();
@@ -170,7 +170,7 @@ public class Gui extends Application{
         ImageView imgView = new ImageView(cardImg);
         imgView.setFitHeight(325);
         imgView.setFitWidth(225);
-        grid.add(imgView, 1, 9);
+        grid.add(imgView, 1, 7);
     }
 
     public void searchHistorySizeChecker(){
