@@ -35,6 +35,16 @@ to be able enter the name of a card
 
 * (v.0.2.0) As a player of Magic: The Gathering, so that I can easily access a marketplace to purchase a desired card, I want to click on a link and be redirected to the marketplace site.
 
+* (v.0.3.0) As a Player of Magic: The Gathering, so that I can get immediate feedback on my query, I want the program to have more robust error handling that doesn’t crash the program and displays to the user what went wrong.
+
+* (v.0.3.0) As a Player of Magic: The Gathering, so that I can easily determine what mana colors a card requires, I want to see an image displayed of that specific mana on the Converted Mana Cost line of the formatted JSON return.
+
+* (v.0.3.0) As a Player of Magic: The Gathering,
+So that the interface is more pleasant to the eye, I want to see a Magic logo on the main screen and be able to see the app in dark mode.
+
+* (v.0.3.0) As a Player of Magic: The Gathering, So that I can easily access cards I have previously searched in an app session, I want to be able to have a search history that when clicked will display a previously searched card.
+
+
 ### Technologies used:
 ***
 * Java: https://www.java.com/en/
